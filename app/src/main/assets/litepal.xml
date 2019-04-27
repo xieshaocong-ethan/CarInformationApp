@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<litepal>
+    <!-- 数据库名 -->
+    <dbname value="carcarcar" >
+    </dbname>
+    <!-- 数据库版本号 -->
+    <version value="2" >
+    </version>
+    <!-- 映射模型，稍后用到 -->
+    <list>
+        <mapping class="com.car.bean.admin" >
+        </mapping>
+    </list>
+</litepal>
