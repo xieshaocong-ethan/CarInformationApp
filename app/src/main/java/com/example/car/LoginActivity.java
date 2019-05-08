@@ -5,11 +5,16 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Message;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import org.apache.http.*;
 import com.car.bean.admin;
@@ -22,7 +27,6 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.litepal.tablemanager.Connector;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,6 +34,7 @@ public class LoginActivity extends Activity {
     private EditText id;
     private EditText password;
     private SQLiteDatabase db;
+    private TextView zhuce;
     public static final int SHOW_RESPONSE=1;
     public Handler handler=new Handler() {
         public void handleMessage(Message msg)
@@ -49,6 +54,7 @@ public class LoginActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Button btn_login = (Button)this.findViewById(R.id.btn_login);
+        zhuce=(TextView)findViewById(R.id.btn_register  );
         id = this.findViewById(R.id.login_edtId);
         password = this.findViewById(R.id.login_edtPwd);
         btn_login.setOnClickListener(new View.OnClickListener(){
@@ -63,6 +69,23 @@ public class LoginActivity extends Activity {
                 }
             }
         });
+
+
+        String text1="注册";
+        SpannableString spannableString1=new SpannableString(text1);
+        spannableString1.setSpan(new ClickableSpan() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(LoginActivity.this, RegistActivity.class);
+                startActivity(intent);
+
+            }
+        }, 0, text1.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+
+        zhuce.setText(spannableString1);
+        zhuce.setMovementMethod(LinkMovementMethod.getInstance());
+
     }
 
     public void SendByHttpClient(final String id, final String pw) {
