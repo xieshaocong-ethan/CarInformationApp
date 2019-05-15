@@ -10,10 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.android.volley.Request.Method;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,6 +28,7 @@ public class RegistActivity extends Activity {
     private EditText email;
     private EditText yanzhengma;
     private int yanzheng;
+   // RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

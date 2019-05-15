@@ -8,7 +8,7 @@
     </version>
     <!-- 映射模型，稍后用到 -->
     <list>
-        <mapping class="com.car.bean.admin" >
+        <mapping class="com.car.bean.User" >
         </mapping>
     </list>
 </litepal>

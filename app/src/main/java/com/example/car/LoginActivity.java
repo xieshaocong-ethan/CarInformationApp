@@ -4,11 +4,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.os.Message;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,42 +16,31 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import org.apache.http.*;
-import com.car.bean.admin;
-import android.os.Handler;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.util.EntityUtils;
-import org.litepal.tablemanager.Connector;
-
-import java.util.ArrayList;
+import com.alibaba.fastjson.JSON;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.car.bean.User;
+import org.json.JSONObject;
+import org.litepal.LitePal;
+import org.litepal.crud.DataSupport;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LoginActivity extends Activity {
     private EditText id;
     private EditText password;
-    private SQLiteDatabase db;
+    private SQLiteDatabase db ;
     private TextView zhuce;
-    public static final int SHOW_RESPONSE=1;
-    public Handler handler=new Handler() {
-        public void handleMessage(Message msg)
-        {
-            switch (msg.what){
-                case SHOW_RESPONSE:
-                    String response=(String)msg.obj;
-                    Toast.makeText(LoginActivity.this, response, Toast.LENGTH_SHORT).show();
-                    break;
-                default:
-                    break;
-            }
-        }
-    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        /**/
+
+        /**/
         setContentView(R.layout.activity_login);
         Button btn_login = (Button)this.findViewById(R.id.btn_login);
         zhuce=(TextView)findViewById(R.id.btn_register  );
@@ -62,11 +51,7 @@ public class LoginActivity extends Activity {
                 String loginId = id.getText().toString();
                 String pass = password.getText().toString();
                 Toast.makeText(LoginActivity.this, loginId, Toast.LENGTH_SHORT).show();
-                try {
-                    SendByHttpClient(loginId,pass);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                login(loginId,pass);
             }
         });
 
@@ -88,56 +73,60 @@ public class LoginActivity extends Activity {
 
     }
 
-    public void SendByHttpClient(final String id, final String pw) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    HttpClient httpclient = new DefaultHttpClient();
-                    HttpPost httpPost = new HttpPost("http://192.168.0.104:8080/carcarcar/LoginServlet");//服务器地址，指向Servlet
-                    List<NameValuePair> params = new ArrayList<NameValuePair>();//将id和pw装入list
-                    params.add(new BasicNameValuePair("ID", id));
-                    params.add(new BasicNameValuePair("PW", pw));
-                    final UrlEncodedFormEntity entity = new UrlEncodedFormEntity(params, "utf-8");//以UTF-8格式发送
-                    httpPost.setEntity(entity);
-                    HttpResponse httpResponse = httpclient.execute(httpPost);
-                    if (httpResponse.getStatusLine().getStatusCode() == 200)//在200毫秒之内接收到返回值
-                    {
-                        HttpEntity entity1 = httpResponse.getEntity();
-                        String response = EntityUtils.toString(entity1, "utf-8");//以UTF-8格式解析
-                        Message message = new Message();
-                        message.what=SHOW_RESPONSE;
-                        message.obj = response;
-                      if(response.equals("true")){
-                             Intent intent = new Intent(LoginActivity.this, testActivity.class);
-                             startActivity(intent);
-                             if(db==null){
-                                db = Connector.getDatabase();
-                                admin admin = new admin();
-                                admin.setAdminname(Integer.valueOf(id));
-                                admin.setLogin(1);
-                                admin.setLimit("管理员");
-                                admin.save();
-                            }else{
-                                admin admin = new admin();
-                                admin.setAdminname(Integer.valueOf(id));
-                                admin.setLogin(1);
-                                admin.setLimit("管理员");
-                                admin.save();
-                            }
-                       }else {
-                         Toast toast = Toast.makeText(LoginActivity.this,"账号密码错误",Toast.LENGTH_SHORT);
-                         toast.show();
-                      }
-                        handler.sendMessage(message);
-                       // 使用Message传递消息给线程
+    private void login(String userid,String password) {
+        Map<String,String> params = new HashMap();
+        params.put("userid",userid);
+        params.put("password",password);
+        String url = "http://192.168.191.1:8080/carServer/loginByUser";
+        //将map转化为JSONObject对象
+        JSONObject jsonObject = new JSONObject(params);
+        Log.i("json","登录中....");
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {//jsonObject为请求返回的Json格式数据
+                        String responseJson = jsonObject.toString();
+                        Log.i("json",responseJson );
+                        com.alibaba.fastjson.JSONObject json = JSON.parseObject(responseJson);
+                        String result = json.get("result").toString();
+                        if(result.equals("true")){
+                            Intent intent = new Intent(LoginActivity.this, testActivity.class);
+                            startActivity(intent);
+                            saveUser(json);
+                        }else {
+                            Toast toast = Toast.makeText(LoginActivity.this,"账号密码错误",Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        }).start();
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(LoginActivity.this,volleyError.toString(),Toast.LENGTH_LONG).show();
+                    }
+                });
+        //设置请求的Tag标签，可以在全局请求队列中通过Tag标签进行请求的查找
+        request.setTag("testPost");
+        //将请求加入全局队列中
+        MyApplication.getHttpQueues().add(request);
     }
+
+    public void saveUser(com.alibaba.fastjson.JSONObject jsonObject){
+
+            LitePal.getDatabase();
+            User user = new User();
+            user.setUserid(jsonObject.getJSONObject("user").get("userid").toString());
+            user.setIdentity(jsonObject.getJSONObject("user").get("Identity").toString());
+            user.save();
+            Log.i("login","ok");
+            List<User> books = DataSupport.findAll(User.class);
+            for (User book : books) {
+                Log.d("MainActivity", "userid is" + book.getUserid());
+                Log.d("MainActivity", "Identity is" + book.getIdentity());
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
