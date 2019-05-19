@@ -28,12 +28,12 @@ public class RegistActivity extends Activity {
     private EditText email;
     private EditText yanzhengma;
     private int yanzheng;
-   // RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_regist);
+        setContentView(R.layout.car_register);
+
         Button btn_regist = (Button)this.findViewById(R.id.btn_regist);
         Button btn_yanzheng = (Button)this.findViewById(R.id.btn_yanzheng);
         id = this.findViewById(R.id.regist_uname);
@@ -161,24 +161,4 @@ public class RegistActivity extends Activity {
         //return Integer.parseInt(jsonObject.toString());
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

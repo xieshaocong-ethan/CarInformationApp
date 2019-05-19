@@ -32,4 +32,6 @@ dependencies {
     implementation files('libs/httpclient-4.2.5.jar')
     implementation files('libs/httpcore-4.2.4.jar')
     implementation 'com.alibaba:fastjson:1.1.54.android'
+    implementation 'pub.devrel:easypermissions:1.2.0'
+    implementation 'com.google.android.gms:play-services-maps:16.1.0'
 }

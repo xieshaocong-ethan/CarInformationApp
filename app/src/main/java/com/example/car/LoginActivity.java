@@ -66,8 +66,6 @@ public class LoginActivity extends Activity {
 
             }
         }, 0, text1.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-
         zhuce.setText(spannableString1);
         zhuce.setMovementMethod(LinkMovementMethod.getInstance());
 
@@ -92,7 +90,7 @@ public class LoginActivity extends Activity {
                         if(result.equals("true")){
                             Intent intent = new Intent(LoginActivity.this, testActivity.class);
                             startActivity(intent);
-                            saveUser(json);
+                            testActivity.saveUser(json);
                         }else {
                             Toast toast = Toast.makeText(LoginActivity.this,"账号密码错误",Toast.LENGTH_SHORT);
                             toast.show();
@@ -112,40 +110,6 @@ public class LoginActivity extends Activity {
         MyApplication.getHttpQueues().add(request);
     }
 
-    public void saveUser(com.alibaba.fastjson.JSONObject jsonObject){
 
-            LitePal.getDatabase();
-            User user = new User();
-            user.setUserid(jsonObject.getJSONObject("user").get("userid").toString());
-            user.setIdentity(jsonObject.getJSONObject("user").get("Identity").toString());
-            user.save();
-            Log.i("login","ok");
-            List<User> books = DataSupport.findAll(User.class);
-            for (User book : books) {
-                Log.d("MainActivity", "userid is" + book.getUserid());
-                Log.d("MainActivity", "Identity is" + book.getIdentity());
-        }
-    }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }
