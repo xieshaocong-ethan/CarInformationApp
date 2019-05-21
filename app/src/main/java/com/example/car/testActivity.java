@@ -27,6 +27,7 @@ public class testActivity extends AppCompatActivity
     LoginFragment loginFragment = new LoginFragment();
     RegistFregment registFregment = new RegistFregment();
     static User user;
+
     @Override
     public void onUserChange(User user1) {
         user = user1;
