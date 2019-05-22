@@ -32,8 +32,9 @@ public class testActivity extends AppCompatActivity
     public void onUserChange(User user1) {
         user = user1;
         Toast.makeText(this,"test:"+user.toString(),Toast.LENGTH_LONG).show();
+
     }
-        MainFragment mainFragment = new MainFragment();
+    MainFragment mainFragment = new MainFragment();
 
 
     @Override
@@ -69,6 +70,7 @@ public class testActivity extends AppCompatActivity
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();

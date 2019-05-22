@@ -85,8 +85,7 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_menu_manage"
-                app:srcCompat="@android:drawable/checkbox_on_background" />
+                android:src="@drawable/youjian" />
 
             <EditText
                 android:id="@+id/regist_email"
@@ -114,8 +113,7 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_menu_manage"
-                app:srcCompat="@android:drawable/checkbox_on_background" />
+                android:src="@drawable/yanzhnegma" />
 
             <EditText
                 android:id="@+id/regist_yanzheng"
@@ -143,8 +141,7 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_menu_manage"
-                app:srcCompat="@android:drawable/sym_action_chat" />
+                android:src="@drawable/yonghu" />
 
             <EditText
                 android:id="@+id/regist_uname"
@@ -174,8 +171,7 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/ic_menu_manage"
-                tools:srcCompat="@drawable/ic_menu_manage" />
+                android:src="@drawable/mima" />
 
             <EditText
                 android:id="@+id/regist_password"
