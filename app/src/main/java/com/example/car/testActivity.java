@@ -53,7 +53,6 @@ public class testActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
-        setTitle("主页");
         if(user==null){
             navigationView.getMenu().findItem(R.id.login).setVisible(true);
         }else{

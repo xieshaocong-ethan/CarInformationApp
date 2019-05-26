@@ -27,11 +27,5 @@
                 android:textColor="#E9EFF3"
                 android:textSize="18sp" />
         </android.support.v7.widget.Toolbar>
-
     </android.support.design.widget.AppBarLayout>
-
-
-
-
-
 </android.support.design.widget.CoordinatorLayout>
