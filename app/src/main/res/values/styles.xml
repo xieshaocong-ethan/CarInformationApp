@@ -24,10 +24,10 @@
         <item name="llLoadingResId">@layout/common_loading</item>
     </style>
 
-    <style name="AppTheme" parent="AppThemeBase"/>
+    <style name="AppTheme" parent="AppThemeBase" />
 
 
-        <!-- Customize your theme here. -->
+    <!-- Customize your theme here. -->
 
     <style name="AppTheme.TranslucentStatus" />
 
@@ -207,6 +207,18 @@
         <item name="android:layout_gravity">center_vertical|end</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:layout_alignParentRight">true</item>
+    </style>
+
+    <style name="FullscreenTheme" parent="AppTheme">
+        <item name="android:actionBarStyle">@style/FullscreenActionBarStyle</item>
+        <item name="android:windowActionBarOverlay">true</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="metaButtonBarStyle">?android:attr/buttonBarStyle</item>
+        <item name="metaButtonBarButtonStyle">?android:attr/buttonBarButtonStyle</item>
+    </style>
+
+    <style name="FullscreenActionBarStyle" parent="Widget.AppCompat.ActionBar">
+        <item name="android:background">@color/black_overlay</item>
     </style>
 
 </resources>

@@ -88,7 +88,7 @@ public class LoginActivity extends Activity {
                         com.alibaba.fastjson.JSONObject json = JSON.parseObject(responseJson);
                         String result = json.get("result").toString();
                         if(result.equals("true")){
-                            Intent intent = new Intent(LoginActivity.this, testActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, CarMainActivity.class);
                             startActivity(intent);
                             testActivity.saveUser(json);
                         }else {
