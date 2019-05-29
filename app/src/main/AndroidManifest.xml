@@ -26,10 +26,9 @@
                 android:resource="@xml/photo" />
         </provider>
         <activity
-            android:name=".testActivity"
+            android:name=".CarMainActivity"
             android:label="@string/app_name"
-            android:parentActivityName=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:parentActivityName=".LoginActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.car.LoginActivity" />

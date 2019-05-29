@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.adapter.BaseRecyclerAdapter;
@@ -30,6 +31,10 @@ public class CarMainActivity extends AppCompatActivity {
         int avatarId;
         String name;
         String nickname;
+
+        public String getName() {
+            return name;
+        }
     }
 
     private static boolean isFirstEnter = true;
@@ -71,7 +76,8 @@ public class CarMainActivity extends AppCompatActivity {
                     holder.image(R.id.image, model.imageId);
                     holder.image(R.id.avatar, model.avatarId);
                 }
-            });
+            }
+            );
 
             refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
                 @Override
@@ -107,6 +113,13 @@ public class CarMainActivity extends AppCompatActivity {
                     refreshLayout.setHeaderInsetStart(DensityUtil.px2dp(toolbar.getHeight()));
                 }
             }, 500);
+            mAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Model modle = mAdapter.get(position);
+                    Toast.makeText(getApplicationContext(),modle.name,Toast.LENGTH_LONG).show();
+                }
+            });
         }
 
         //状态栏透明和间距处理

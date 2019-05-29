@@ -10,6 +10,8 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.car.R;
+
 public class SmartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private final AdapterView.OnItemClickListener mListener;
@@ -45,6 +47,7 @@ public class SmartViewHolder extends RecyclerView.ViewHolder implements View.OnC
     public void onClick(View v) {
         if (mListener != null) {
             int position = getAdapterPosition();
+            itemView.setBackgroundResource(R.drawable.touch_item);
             if(position >= 0){
                 mListener.onItemClick(null, v, position, getItemId());
             } else if (mPosition > -1) {
