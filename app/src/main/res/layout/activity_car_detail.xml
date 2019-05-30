@@ -20,7 +20,7 @@
         app:srlAccentColor="#fff"
         app:srlPrimaryColor="#444"
         app:srlEnablePreviewInEditMode="false"
-        app:srlFooterTranslationViewId="@+id/scrollView"
+        app:srlFooterTranslationViewId="@+id/recyclerView1"
         app:srlEnableLoadMoreWhenContentNotFull="false">
 
         <com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -33,13 +33,12 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
-            <android.support.v4.widget.NestedScrollView
-                android:id="@+id/scrollView"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingTop="130dp"
                 android:clipToPadding="false"
-                android:background="@color/colorPrimaryDark"/>
+                tools:listitem="@layout/item_detail_car"/>
 
             <FrameLayout
                 android:id="@+id/profile"
