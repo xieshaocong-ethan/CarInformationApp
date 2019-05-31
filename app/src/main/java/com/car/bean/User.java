@@ -9,6 +9,7 @@ public class User extends DataSupport {
     private String phone;
     private String area;
     private String identity;
+    private String imgPath;
     public String getUserid() {
         return userid;
     }
@@ -44,5 +45,11 @@ public class User extends DataSupport {
     }
     public void setIdentity(String identity) {
         this.identity = identity == null ? null : identity.trim();
+    }
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath == null ? null : imgPath.trim();
+    }
+    public String getImgPath() {
+        return imgPath;
     }
 }

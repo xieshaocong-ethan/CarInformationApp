@@ -9,4 +9,5 @@ import android.os.Environment;
 public class MyConstant {
 
     public static final String PIC_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CAR";
+    public static final String url = "http://192.168.43.72:8080/carServer/";
 }
