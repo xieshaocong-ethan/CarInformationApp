@@ -8,10 +8,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.car.R;
 import com.pnikosis.materialishprogress.ProgressWheel;
 import com.takwolf.android.hfrecyclerview.HeaderAndFooterRecyclerView;
 
-import org.cnodejs.android.md.R;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

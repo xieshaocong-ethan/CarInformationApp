@@ -2,8 +2,9 @@ package com.forum.model.api;
 
 import android.support.annotation.NonNull;
 
-import org.cnodejs.android.md.BuildConfig;
-import org.cnodejs.android.md.model.util.EntityUtils;
+
+import com.example.car.BuildConfig;
+import com.forum.model.util.EntityUtils;
 
 import java.io.IOException;
 

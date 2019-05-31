@@ -9,12 +9,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.cnodejs.android.md.R;
-import org.cnodejs.android.md.model.entity.TopicSimple;
-import org.cnodejs.android.md.model.glide.GlideApp;
-import org.cnodejs.android.md.ui.activity.UserDetailActivity;
-import org.cnodejs.android.md.ui.util.Navigator;
-import org.cnodejs.android.md.util.FormatUtils;
+
+import com.example.car.R;
+import com.forum.model.entity.TopicSimple;
+import com.forum.model.glide.GlideApp;
+import com.forum.ui.activity.UserDetailActivity;
+import com.forum.ui.util.Navigator;
+import com.forum.util.FormatUtils;
 
 import java.util.ArrayList;
 import java.util.List;

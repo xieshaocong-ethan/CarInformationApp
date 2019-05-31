@@ -2,7 +2,8 @@ package com.forum.model.api;
 
 import android.os.Build;
 
-import org.cnodejs.android.md.BuildConfig;
+import com.example.car.BuildConfig;
+
 
 public final class ApiDefine {
 

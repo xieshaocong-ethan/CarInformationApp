@@ -2,12 +2,14 @@ package com.forum.ui.view;
 
 import android.support.annotation.NonNull;
 
-import org.cnodejs.android.md.model.entity.Reply;
-import org.cnodejs.android.md.model.entity.TopicWithReply;
+import com.forum.model.entity.Reply;
+import com.forum.model.entity.TopicWithReply;
+
 
 public interface ITopicView {
 
     void onGetTopicOk(@NonNull TopicWithReply topic);
+
 
     void onGetTopicFinish();
 

@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 
-import com.example.car.LoginActivity;
 import com.example.car.R;
 import com.forum.model.api.ApiDefine;
 import com.forum.model.entity.Reply;

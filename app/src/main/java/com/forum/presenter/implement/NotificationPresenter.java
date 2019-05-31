@@ -3,21 +3,16 @@ package com.forum.presenter.implement;
 import android.app.Activity;
 import android.support.annotation.NonNull;
 
+import com.forum.model.api.ApiClient;
 import com.forum.model.api.ApiDefine;
+import com.forum.model.api.SessionCallback;
+import com.forum.model.entity.DataResult;
 import com.forum.model.entity.Notification;
+import com.forum.model.entity.Result;
 import com.forum.model.storage.LoginShared;
 import com.forum.presenter.contract.INotificationPresenter;
 import com.forum.ui.view.INotificationView;
 
-import org.cnodejs.android.md.model.api.ApiClient;
-import org.cnodejs.android.md.model.api.ApiDefine;
-import org.cnodejs.android.md.model.api.SessionCallback;
-import org.cnodejs.android.md.model.entity.DataResult;
-import org.cnodejs.android.md.model.entity.Notification;
-import org.cnodejs.android.md.model.entity.Result;
-import org.cnodejs.android.md.model.storage.LoginShared;
-import org.cnodejs.android.md.presenter.contract.INotificationPresenter;
-import org.cnodejs.android.md.ui.view.INotificationView;
 
 import okhttp3.Headers;
 

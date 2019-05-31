@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.annotation.StyleRes;
 
-import org.cnodejs.android.md.model.storage.SettingShared;
-import org.cnodejs.android.md.util.HandlerUtils;
+import com.forum.model.storage.SettingShared;
+import com.forum.util.HandlerUtils;
+
 
 public final class ThemeUtils {
 

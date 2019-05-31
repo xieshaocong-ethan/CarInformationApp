@@ -24,6 +24,7 @@ import com.example.car.R;
 import com.forum.model.api.ApiDefine;
 import com.forum.model.entity.Topic;
 import com.forum.model.entity.User;
+import com.forum.model.glide.GlideApp;
 import com.forum.presenter.contract.IUserDetailPresenter;
 import com.forum.presenter.implement.UserDetailPresenter;
 import com.forum.ui.adapter.UserDetailPagerAdapter;
@@ -39,7 +40,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import md.model.glide.GlideApp;
 
 public class UserDetailActivity extends StatusBarActivity implements IUserDetailView, Toolbar.OnMenuItemClickListener {
 

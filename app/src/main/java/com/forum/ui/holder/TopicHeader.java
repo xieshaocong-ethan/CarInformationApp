@@ -10,23 +10,24 @@ import android.widget.CheckedTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.car.R;
+import com.forum.model.entity.Topic;
+import com.forum.model.entity.TopicWithReply;
+import com.forum.model.glide.GlideApp;
+import com.forum.presenter.contract.ITopicHeaderPresenter;
+import com.forum.presenter.implement.TopicHeaderPresenter;
+import com.forum.ui.activity.LoginActivity;
+import com.forum.ui.activity.UserDetailActivity;
+import com.forum.ui.view.ITopicHeaderView;
+import com.forum.ui.widget.ContentWebView;
+import com.forum.util.FormatUtils;
 import com.takwolf.android.hfrecyclerview.HeaderAndFooterRecyclerView;
 
-import org.cnodejs.android.md.R;
-import org.cnodejs.android.md.model.entity.Topic;
-import org.cnodejs.android.md.model.entity.TopicWithReply;
-import org.cnodejs.android.md.model.glide.GlideApp;
-import org.cnodejs.android.md.presenter.contract.ITopicHeaderPresenter;
-import org.cnodejs.android.md.presenter.implement.TopicHeaderPresenter;
-import org.cnodejs.android.md.ui.activity.LoginActivity;
-import org.cnodejs.android.md.ui.activity.UserDetailActivity;
-import org.cnodejs.android.md.ui.view.ITopicHeaderView;
-import org.cnodejs.android.md.ui.widget.ContentWebView;
-import org.cnodejs.android.md.util.FormatUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 
 public class TopicHeader implements ITopicHeaderView {
 

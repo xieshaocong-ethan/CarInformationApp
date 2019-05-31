@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.example.car.R;
 import com.forum.model.entity.Topic;
+import com.forum.model.glide.GlideApp;
 import com.forum.ui.activity.UserDetailActivity;
 import com.forum.ui.util.Navigator;
 import com.forum.util.FormatUtils;
@@ -22,7 +23,6 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import md.model.glide.GlideApp;
 
 public class TopicListAdapter extends RecyclerView.Adapter<TopicListAdapter.ViewHolder> {
 

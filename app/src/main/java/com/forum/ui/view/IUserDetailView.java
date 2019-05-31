@@ -2,8 +2,9 @@ package com.forum.ui.view;
 
 import android.support.annotation.NonNull;
 
-import org.cnodejs.android.md.model.entity.Topic;
-import org.cnodejs.android.md.model.entity.User;
+
+import com.forum.model.entity.Topic;
+import com.forum.model.entity.User;
 
 import java.util.List;
 

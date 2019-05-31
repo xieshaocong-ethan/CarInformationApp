@@ -8,11 +8,12 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.ViewGroup;
 
-import org.cnodejs.android.md.R;
-import org.cnodejs.android.md.model.entity.Topic;
-import org.cnodejs.android.md.model.entity.TopicSimple;
-import org.cnodejs.android.md.model.entity.User;
-import org.cnodejs.android.md.ui.holder.TopicSimpleListController;
+
+import com.example.car.R;
+import com.forum.model.entity.Topic;
+import com.forum.model.entity.TopicSimple;
+import com.forum.model.entity.User;
+import com.forum.ui.holder.TopicSimpleListController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,3 +79,4 @@ public class UserDetailPagerAdapter extends PagerAdapter {
     }
 
 }
+

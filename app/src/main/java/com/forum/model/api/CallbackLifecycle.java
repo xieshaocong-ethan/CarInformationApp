@@ -1,7 +1,8 @@
 package com.forum.model.api;
 
-import org.cnodejs.android.md.model.entity.ErrorResult;
-import org.cnodejs.android.md.model.entity.Result;
+import com.forum.model.entity.ErrorResult;
+import com.forum.model.entity.Result;
+
 
 import okhttp3.Headers;
 
@@ -14,6 +15,7 @@ public interface CallbackLifecycle<T extends Result> {
     boolean onCallCancel();
 
     boolean onCallException(Throwable t, ErrorResult errorResult);
+
 
     void onFinish();
 

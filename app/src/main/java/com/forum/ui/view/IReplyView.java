@@ -2,7 +2,8 @@ package com.forum.ui.view;
 
 import android.support.annotation.NonNull;
 
-import org.cnodejs.android.md.model.entity.Reply;
+import com.forum.model.entity.Reply;
+
 
 public interface IReplyView {
 

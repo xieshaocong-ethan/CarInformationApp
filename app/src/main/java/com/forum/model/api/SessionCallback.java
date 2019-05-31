@@ -5,10 +5,10 @@ import android.content.DialogInterface;
 import android.support.annotation.NonNull;
 
 
-import com.example.car.LoginActivity;
 import com.example.car.R;
 import com.forum.model.entity.ErrorResult;
 import com.forum.model.entity.Result;
+import com.forum.ui.activity.LoginActivity;
 import com.forum.ui.dialog.AlertDialogUtils;
 import com.forum.ui.util.ActivityUtils;
 

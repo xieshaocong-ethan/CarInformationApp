@@ -18,8 +18,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import org.cnodejs.android.md.R;
-import org.cnodejs.android.md.util.ResUtils;
+
+import com.example.car.R;
+import com.forum.util.ResUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

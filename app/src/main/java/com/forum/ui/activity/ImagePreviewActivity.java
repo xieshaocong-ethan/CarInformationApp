@@ -13,6 +13,7 @@ import com.bumptech.glide.load.engine.GlideException;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 import com.example.car.R;
+import com.forum.model.glide.GlideApp;
 import com.forum.ui.listener.NavigationFinishClickListener;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.pnikosis.materialishprogress.ProgressWheel;
@@ -21,7 +22,6 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import md.model.glide.GlideApp;
 
 public class ImagePreviewActivity extends StatusBarActivity {
 

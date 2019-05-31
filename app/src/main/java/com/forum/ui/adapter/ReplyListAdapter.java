@@ -11,12 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 
-import com.example.car.LoginActivity;
 import com.example.car.R;
 import com.forum.model.entity.Reply;
+import com.forum.model.glide.GlideApp;
 import com.forum.model.storage.LoginShared;
 import com.forum.presenter.contract.IReplyPresenter;
 import com.forum.presenter.implement.ReplyPresenter;
+import com.forum.ui.activity.LoginActivity;
 import com.forum.ui.activity.UserDetailActivity;
 import com.forum.ui.util.ToastUtils;
 import com.forum.ui.view.ICreateReplyView;
@@ -32,7 +33,6 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import md.model.glide.GlideApp;
 
 public class ReplyListAdapter extends RecyclerView.Adapter<ReplyListAdapter.ViewHolder> implements IReplyView {
 

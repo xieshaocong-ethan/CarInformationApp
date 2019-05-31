@@ -8,9 +8,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import org.cnodejs.android.md.R;
-import org.cnodejs.android.md.model.entity.TopicSimple;
-import org.cnodejs.android.md.ui.adapter.TopicSimpleListAdapter;
+
+import com.example.car.R;
+import com.forum.model.entity.TopicSimple;
+import com.forum.ui.adapter.TopicSimpleListAdapter;
 
 import java.util.List;
 

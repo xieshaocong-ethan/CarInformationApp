@@ -2,8 +2,8 @@ package com.forum.ui.view;
 
 import android.support.annotation.NonNull;
 
-import org.cnodejs.android.md.model.entity.Tab;
-import org.cnodejs.android.md.model.entity.Topic;
+import com.forum.model.entity.Tab;
+import com.forum.model.entity.Topic;
 
 import java.util.List;
 

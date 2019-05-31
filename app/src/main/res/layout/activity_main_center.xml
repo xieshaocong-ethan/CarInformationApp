@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <org.cnodejs.android.md.ui.widget.AdaptStatusBarView
+    <com.forum.ui.widget.AdaptStatusBarView
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

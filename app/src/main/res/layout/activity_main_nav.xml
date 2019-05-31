@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:background="#01000000">
 
-                <org.cnodejs.android.md.ui.widget.AdaptStatusBarView
+                <com.forum.ui.widget.AdaptStatusBarView
                     android:id="@+id/nav_adapt_status_bar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
@@ -107,7 +107,7 @@
 
         <Space style="@style/AppWidget.Gap" />
 
-        <org.cnodejs.android.md.ui.widget.NavigationItem
+        <com.forum.ui.widget.NavigationItem
             android:id="@+id/btn_nav_all"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -117,7 +117,7 @@
             app:iconChecked="@drawable/ic_forum_theme_24dp"
             app:title="@string/tab_all" />
 
-        <org.cnodejs.android.md.ui.widget.NavigationItem
+        <com.forum.ui.widget.NavigationItem
             android:id="@+id/btn_nav_good"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
             app:iconChecked="@drawable/ic_thumb_up_theme_24dp"
             app:title="@string/tab_good" />
 
-        <org.cnodejs.android.md.ui.widget.NavigationItem
+        <com.forum.ui.widget.NavigationItem
             android:id="@+id/btn_nav_share"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
             app:iconChecked="@drawable/ic_share_theme_24dp"
             app:title="@string/tab_share" />
 
-        <org.cnodejs.android.md.ui.widget.NavigationItem
+        <com.forum.ui.widget.NavigationItem
             android:id="@+id/btn_nav_ask"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -144,7 +144,7 @@
             app:iconChecked="@drawable/ic_face_theme_24dp"
             app:title="@string/tab_ask" />
 
-        <org.cnodejs.android.md.ui.widget.NavigationItem
+        <com.forum.ui.widget.NavigationItem
             android:id="@+id/btn_nav_job"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -153,7 +153,7 @@
             app:iconChecked="@drawable/ic_work_theme_24dp"
             app:title="@string/tab_job" />
 
-        <org.cnodejs.android.md.ui.widget.NavigationItem
+        <com.forum.ui.widget.NavigationItem
             android:id="@+id/btn_nav_dev"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -166,7 +166,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp" />
 
-        <org.cnodejs.android.md.ui.widget.NavigationItem
+        <com.forum.ui.widget.NavigationItem
             android:id="@+id/btn_nav_notification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -175,7 +175,7 @@
             app:iconChecked="@drawable/ic_notifications_grey600_24dp"
             app:title="@string/notification" />
 
-        <org.cnodejs.android.md.ui.widget.NavigationItem
+        <com.forum.ui.widget.NavigationItem
             android:id="@+id/btn_nav_setting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -184,7 +184,7 @@
             app:iconChecked="@drawable/ic_settings_grey600_24dp"
             app:title="@string/setting" />
 
-        <org.cnodejs.android.md.ui.widget.NavigationItem
+        <com.forum.ui.widget.NavigationItem
             android:id="@+id/btn_nav_about"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

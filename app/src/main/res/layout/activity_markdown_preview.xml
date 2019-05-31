@@ -16,7 +16,7 @@
         app:title="@string/markdown_preview"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <org.cnodejs.android.md.ui.widget.PreviewWebView
+    <com.forum.ui.widget.PreviewWebView
         android:id="@+id/web_preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

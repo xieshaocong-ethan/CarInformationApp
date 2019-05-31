@@ -22,16 +22,6 @@ import com.forum.ui.util.ToastUtils;
 import com.forum.ui.view.ICreateReplyView;
 import com.forum.ui.view.ITopicView;
 
-import org.cnodejs.android.md.R;
-import org.cnodejs.android.md.model.entity.Reply;
-import org.cnodejs.android.md.model.storage.SettingShared;
-import org.cnodejs.android.md.presenter.contract.ICreateReplyPresenter;
-import org.cnodejs.android.md.presenter.implement.CreateReplyPresenter;
-import org.cnodejs.android.md.ui.holder.EditorBarViewHolder;
-import org.cnodejs.android.md.ui.util.ToastUtils;
-import org.cnodejs.android.md.ui.view.ICreateReplyView;
-import org.cnodejs.android.md.ui.view.ITopicView;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.webkit.JavascriptInterface;
 
-import com.example.car.LoginActivity;
 import com.example.car.R;
 import com.forum.model.entity.Reply;
 import com.forum.model.storage.LoginShared;
 import com.forum.model.util.EntityUtils;
 import com.forum.presenter.contract.IReplyPresenter;
 import com.forum.presenter.contract.ITopicHeaderPresenter;
+import com.forum.ui.activity.LoginActivity;
 import com.forum.ui.activity.UserDetailActivity;
 import com.forum.ui.util.ToastUtils;
 import com.forum.ui.view.ICreateReplyView;

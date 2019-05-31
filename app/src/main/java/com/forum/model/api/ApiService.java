@@ -1,16 +1,17 @@
 package com.forum.model.api;
 
-import org.cnodejs.android.md.model.entity.CreateTopicResult;
-import org.cnodejs.android.md.model.entity.DataResult;
-import org.cnodejs.android.md.model.entity.LoginResult;
-import org.cnodejs.android.md.model.entity.Notification;
-import org.cnodejs.android.md.model.entity.ReplyTopicResult;
-import org.cnodejs.android.md.model.entity.Result;
-import org.cnodejs.android.md.model.entity.Tab;
-import org.cnodejs.android.md.model.entity.Topic;
-import org.cnodejs.android.md.model.entity.TopicWithReply;
-import org.cnodejs.android.md.model.entity.UpReplyResult;
-import org.cnodejs.android.md.model.entity.User;
+import com.forum.model.entity.CreateTopicResult;
+import com.forum.model.entity.DataResult;
+import com.forum.model.entity.LoginResult;
+import com.forum.model.entity.Notification;
+import com.forum.model.entity.ReplyTopicResult;
+import com.forum.model.entity.Result;
+import com.forum.model.entity.Tab;
+import com.forum.model.entity.Topic;
+import com.forum.model.entity.TopicWithReply;
+import com.forum.model.entity.UpReplyResult;
+import com.forum.model.entity.User;
+
 
 import java.util.List;
 

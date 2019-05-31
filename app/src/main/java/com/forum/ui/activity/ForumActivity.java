@@ -17,8 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.car.BuildConfig;
-import com.example.car.LoginActivity;
 import com.example.car.R;
+import com.forum.model.glide.GlideApp;
 import com.forum.presenter.contract.IMainPresenter;
 import com.forum.presenter.implement.MainPresenter;
 import com.forum.ui.adapter.TopicListAdapter;
@@ -37,7 +37,6 @@ import com.forum.util.HandlerUtils;
 import com.takwolf.android.hfrecyclerview.HeaderAndFooterRecyclerView;
 import com.forum.model.entity.Tab;
 import com.forum.model.entity.Topic;
-import md.model.glide.GlideApp;
 import com.forum.model.storage.LoginShared;
 import com.forum.model.storage.SettingShared;
 
