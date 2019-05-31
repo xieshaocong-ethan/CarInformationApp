@@ -107,13 +107,14 @@ public class LoginActivity extends AppCompatActivity {
                         if(result.equals("true")){
 
                             Bitmap img = stringToBitmap(json.get("img").toString());
+
+                            saveBitmap(MyConstant.PIC_PATH+"/USER.jpg",img);
+                            saveUser(json,MyConstant.PIC_PATH+"/USER.jpg");
                             Intent intent = new Intent(LoginActivity.this, CarMainActivity.class);
 //                            intent.putExtra("userid", json.get("userid").toString());
 //                            intent.putExtra("email", json.get("email").toString());
 //                            intent.putExtra("img", img);
                             startActivity(intent);
-                            saveBitmap(MyConstant.PIC_PATH+"/USER.jpg",img);
-                            saveUser(json,MyConstant.PIC_PATH+"/USER.jpg");
                         }else {
                             Toast toast = Toast.makeText(LoginActivity.this,"账号密码错误",Toast.LENGTH_SHORT);
                             toast.show();
