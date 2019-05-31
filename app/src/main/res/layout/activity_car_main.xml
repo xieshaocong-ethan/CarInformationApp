@@ -1,67 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackgroundDark"
-    tools:context="com.example.car.CarMainActivity">
-
-
-
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srlDragRate="0.7"
-        app:srlHeaderMaxDragRate="1.3"
-        app:srlHeaderHeight="150dp"
-        app:srlEnableAutoLoadMore="true"
-        app:srlHeaderInsetStart="?attr/actionBarSize"
-        app:srlHeaderTriggerRate="0.5">
+        android:background="@color/colorBackgroundDark"
+        tools:context="com.example.car.CarMainActivity">
 
-        <pl.droidsonroids.gif.GifImageView
-            android:id="@+id/gifView"
+
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/refreshLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@mipmap/road"
-            app:layout_srlBackgroundColor="@android:color/transparent"
-            app:layout_srlSpinnerStyle="Scale" />
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="?attr/actionBarSize"
-            android:clipToPadding="false"
-            android:overScrollMode="never"
-            tools:listitem="@layout/item_practice_repast"
-            />
+            app:srlDragRate="0.7"
+            app:srlHeaderMaxDragRate="1.3"
+            app:srlHeaderHeight="150dp"
+            app:srlEnableAutoLoadMore="true"
+            app:srlHeaderInsetStart="?attr/actionBarSize"
+            app:srlHeaderTriggerRate="0.5">
 
-        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+            <pl.droidsonroids.gif.GifImageView
+                android:id="@+id/gifView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/road"
+                app:layout_srlBackgroundColor="@android:color/transparent"
+                app:layout_srlSpinnerStyle="Scale" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingTop="?attr/actionBarSize"
+                android:clipToPadding="false"
+                android:overScrollMode="never"
+                tools:listitem="@layout/item_practice_repast"
+                />
+
+            <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srlAccentColor="#888"
+                app:srlClassicsSpinnerStyle="Translate"
+                app:srlDrawableProgress="@drawable/ic_progress_puzzle"/>
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+
+
+        <com.github.mmin18.widget.RealtimeBlurView
+            android:id="@+id/blurView"
             android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:visibility="visible"/>
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/AppTheme.Toolbar.Light"
             android:layout_height="wrap_content"
-            app:srlAccentColor="#888"
-            app:srlClassicsSpinnerStyle="Translate"
-            app:srlDrawableProgress="@drawable/ic_progress_puzzle"/>
+            android:background="@android:color/transparent"
+            app:title="@string/app_name" />
+    </FrameLayout>
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/activity_main_drawer" />
 
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
-
-    <com.github.mmin18.widget.RealtimeBlurView
-        android:id="@+id/blurView"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:visibility="visible"/>
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        style="@style/AppTheme.Toolbar.Light"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        app:navigationIcon="@drawable/ic_arrow_back_dark_24dp"
-        app:title="@string/app_name" />
-
-
-
-</FrameLayout>
+</android.support.v4.widget.DrawerLayout>

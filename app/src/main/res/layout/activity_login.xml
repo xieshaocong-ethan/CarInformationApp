@@ -16,10 +16,14 @@
         android:layout_height="match_parent"
         android:background="#e7e7e7"
         android:orientation="vertical">
-        <include
-            layout="@layout/app_bar_main"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            style="@style/AppTheme.Toolbar.Light"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            app:navigationIcon="@drawable/ic_arrow_back_dark_24dp"
+            app:title="登录" />
 
         <LinearLayout
 
