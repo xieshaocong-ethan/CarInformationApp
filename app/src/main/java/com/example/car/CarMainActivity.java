@@ -1,8 +1,11 @@
 package com.example.car;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +16,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,6 +28,7 @@ import android.widget.Toast;
 import com.adapter.BaseRecyclerAdapter;
 import com.adapter.SmartViewHolder;
 import com.car.bean.User;
+import com.forum.ui.activity.ForumActivity;
 import com.util.StatusBarUtil;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
@@ -32,6 +37,8 @@ import com.scwang.smartrefresh.layout.util.DensityUtil;
 import org.litepal.crud.DataSupport;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -200,10 +207,12 @@ public class CarMainActivity extends AppCompatActivity
             Intent intent = new Intent(this,LoginActivity.class);
             startActivity(intent);
             // Handle the camera action
-        } else if (id == R.id.login) {
-
-        } else if (id == R.id.nav_slideshow) {
-
+        } else if (id == R.id.luntan) {
+            Intent intent = new Intent(this, ForumActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.main) {
+            Intent intent = new Intent(this, CarMainActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_tools) {
 
         } else if (id == R.id.nav_share) {
@@ -217,35 +226,11 @@ public class CarMainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-//        Intent intent = getIntent();
-//        String userid = (String) intent.getSerializableExtra("userid");
-//        String email = (String) intent.getSerializableExtra("email");
-//        File cropFile = (File) intent.getSerializableExtra("cropFile");
-//
-//
-//        NavigationView navigationView = (NavigationView)findViewById(R.id.main);
-////        navigationView.getMenu().removeItem(22);
-//        View headerView = navigationView.getHeaderView(0);
-//        TextView TextViewuserid = (TextView)headerView.findViewById(R.id.user_id);
-//        TextViewuserid.setText(userid);
-//        TextView TextViewemial = (TextView)headerView.findViewById(R.id.user_email);
-//        TextViewemial.setText(email);
-//        ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
-//        imageView.setImageBitmap(BitmapFactory.decodeFile(cropFile.getAbsolutePath()));
-//        navigationView.getMenu().findItem(R.id.login).setVisible(false);
-    }
+
     @Override
     public void onStart() {
         super.onStart();
- //       DataSupport.deleteAll(User.class);
-//        User user = new User();
-//        user.setUserid("lzk");
-//        user.setIdentity("admin");
-//        user.setImgPath("dfdf");
-//        user.save();
+ //         DataSupport.deleteAll(User.class);
         List<User> users = DataSupport.findAll(User.class);
         if (users.size()>0){
             NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
@@ -256,8 +241,11 @@ public class CarMainActivity extends AppCompatActivity
                 TextView user_email = (TextView)headerView.findViewById(R.id.user_email);
                 user_email.setText(users.get(0).getEmail());
                 ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
-                imageView.setImageBitmap(BitmapFactory.decodeFile(users.get(0).getImgPath()));
+                Bitmap b = null;
+                b =  BitmapFactory.decodeFile(users.get(0).getImgPath());
+                imageView.setImageBitmap(b);
             }
         }
     }
+
 }
