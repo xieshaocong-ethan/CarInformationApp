@@ -230,7 +230,6 @@ public class CarMainActivity extends AppCompatActivity
     @Override
     public void onStart() {
         super.onStart();
- //         DataSupport.deleteAll(User.class);
         List<User> users = DataSupport.findAll(User.class);
         if (users.size()>0){
             NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
