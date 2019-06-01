@@ -1,8 +1,11 @@
 package com.example.car;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,6 +16,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +36,8 @@ import com.scwang.smartrefresh.layout.util.DensityUtil;
 import org.litepal.crud.DataSupport;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -240,7 +246,7 @@ public class CarMainActivity extends AppCompatActivity
     @Override
     public void onStart() {
         super.onStart();
- //       DataSupport.deleteAll(User.class);
+ //         DataSupport.deleteAll(User.class);
 //        User user = new User();
 //        user.setUserid("lzk");
 //        user.setIdentity("admin");
@@ -256,8 +262,11 @@ public class CarMainActivity extends AppCompatActivity
                 TextView user_email = (TextView)headerView.findViewById(R.id.user_email);
                 user_email.setText(users.get(0).getEmail());
                 ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
-                imageView.setImageBitmap(BitmapFactory.decodeFile(users.get(0).getImgPath()));
+                Bitmap b = null;
+                b =  BitmapFactory.decodeFile(users.get(0).getImgPath());
+                imageView.setImageBitmap(b);
             }
         }
     }
+
 }

@@ -104,10 +104,10 @@ public class RegistActivity extends AppCompatActivity implements EasyPermissions
                 String loginId = id.getText().toString();
                 String pass = password.getText().toString();
                 String yanzheng1 = yanzhengma.getText().toString();
-                /*if(cropFile==null){
-                    Toast.makeText(,"请上传图片",Toast.LENGTH_SHORT).show();
+                if(cropFile==null){
+                    Toast.makeText(RegistActivity.this,"请上传图片",Toast.LENGTH_SHORT).show();
                     return;
-                }*/
+                }
                 if(TextUtils.isEmpty(loginId)){
                     Toast.makeText(RegistActivity.this,"账号不能为空",Toast.LENGTH_SHORT).show();
                     return;
@@ -192,8 +192,7 @@ public class RegistActivity extends AppCompatActivity implements EasyPermissions
     //测试与服务器连接
     private void test() {
         String url = MyConstant.url+"getOneCategory";
-        Map<String,String> map = new HashMap<>();
-        map.put("userid","zhangsan");
+        Map<String,String> map = new HashMap<>();        map.put("userid","hangsan");
         map.put("password","112233");
         //将map转化为JSONObject对象
         JSONObject jsonObject = new JSONObject(map);
@@ -202,8 +201,7 @@ public class RegistActivity extends AppCompatActivity implements EasyPermissions
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {//jsonObject为请求返回的Json格式数据
-                        Log.i("json",jsonObject.toString() );
-
+                        Log.i("connection",jsonObject.toString() );
                         Toast.makeText(RegistActivity.this,jsonObject.toString(),Toast.LENGTH_LONG).show();
                     }
                 },
@@ -264,6 +262,7 @@ public class RegistActivity extends AppCompatActivity implements EasyPermissions
             Map<String,String> map = new HashMap<>();
             map.put("userid",userid);
             map.put("password",password);
+            map.put("email",email);
             map.put("imgPath",img);
             //将map转化为JSONObject对象
             JSONObject jsonObject = new JSONObject(map);
@@ -281,28 +280,10 @@ public class RegistActivity extends AppCompatActivity implements EasyPermissions
                                 user.setUserid(userid);
                                 user.setEmail(email);
                                 user.setIdentity("user");
+                                user.setImgPath(cropFile.getAbsolutePath());
                                 saveUser(user);
                                 Intent intent = new Intent(RegistActivity.this,CarMainActivity.class);
-//                                intent.putExtra("userid", userid);
-//                                intent.putExtra("email", email);
-//                                intent.putExtra("cropFile", cropFile);
                                 startActivity(intent);
-                                //修改侧边栏属性
-//                                NavigationView navigationView = (NavigationView) RegistActivity.this.findViewById(R.id.nav_view);
-//                                //navigationView.getMenu().removeItem(22);
-//                                View headerView = navigationView.getHeaderView(0);
-//                                TextView TextViewuserid = (TextView)headerView.findViewById(R.id.user_id);
-//                                TextViewuserid.setText(userid);
-//                                TextView TextViewemial = (TextView)headerView.findViewById(R.id.user_email);
-//                                TextViewemial.setText(email);
-//                                ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
-//                                imageView.setImageBitmap(BitmapFactory.decodeFile(cropFile.getAbsolutePath()));
-//                                navigationView.getMenu().findItem(R.id.login).setVisible(false);
-//
-//                                //user传递给testActivity
-//                                //onUserChangeListener.onUserChange(user);
-//                                //保存到本地数据库
-                                //saveUser(user);
                             }
                             Log.i("json",result);
                         }
@@ -452,10 +433,12 @@ public class RegistActivity extends AppCompatActivity implements EasyPermissions
         LitePal.getDatabase();
         user.save();
         Log.i("saveUser","ok");
-        List<User> books = DataSupport.findAll(User.class);
-        for (User book : books) {
-            Log.d("user", "userid is" + " "+book.getUserid());
-            Log.d("user", "Identity is" + " "+book.getIdentity());
+        List<User> users = DataSupport.findAll(User.class);
+        for (User user1 : users) {
+            Log.d("user", "userid is" + " "+user1.getUserid());
+            Log.d("user", "userEmail is" + " "+user1.getEmail());
+            Log.d("user", "userImgPath is" + " "+user1.getImgPath());
+            Log.d("user", "Identity is" + " "+user1.getIdentity());
         }
     }
 
