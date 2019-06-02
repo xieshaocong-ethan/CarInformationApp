@@ -1,26 +1,20 @@
 package com.example.car;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,8 +28,6 @@ import com.alibaba.fastjson.JSON;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.car.bean.Car;
 import com.car.bean.User;
@@ -48,10 +40,6 @@ import com.scwang.smartrefresh.layout.util.DensityUtil;
 import org.json.JSONObject;
 import org.litepal.crud.DataSupport;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -64,9 +52,10 @@ import java.util.List;
 //接口地址：http://localhost:18080/carServer/listCar
 public class CarMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    public static final String url = MyConstant.url;
     List<Car> cars;
     private class Model {
-        int imageId;
+        int images;
         int avatarId;
         String name;
         String nickname;
@@ -132,7 +121,7 @@ public class CarMainActivity extends AppCompatActivity
                 protected void onBindViewHolder(SmartViewHolder holder, Model model, int position) {
                     holder.text(R.id.name, model.name);
                     holder.text(R.id.nickname, model.nickname);
-                    holder.image(R.id.image, model.imageId);
+                    holder.setimage(R.id.image,"carImg/Model3/1.jpg",10*1024*1024);
                     holder.image(R.id.avatar, model.avatarId);
                 }
             }
@@ -197,32 +186,32 @@ public class CarMainActivity extends AppCompatActivity
                 new Model() {{
                     this.name = "但家香酥鸭";
                     this.nickname = "爱过那张脸";
-                    this.imageId = R.mipmap.image_practice_repast_1;
+                    this.images = R.mipmap.image_practice_repast_1;
                     this.avatarId = R.mipmap.image_avatar_1;
                 }}, new Model() {{
                     this.name = "香菇蒸鸟蛋";
                     this.nickname = "淑女算个鸟";
-                    this.imageId = R.mipmap.image_practice_repast_2;
+                    this.images = R.mipmap.image_practice_repast_2;
                     this.avatarId = R.mipmap.image_avatar_2;
                 }}, new Model() {{
                     this.name = "花溪牛肉粉";
                     this.nickname = "性感妩媚";
-                    this.imageId = R.mipmap.image_practice_repast_3;
+                    this.images = R.mipmap.image_practice_repast_3;
                     this.avatarId = R.mipmap.image_avatar_3;
                 }}, new Model() {{
                     this.name = "破酥包";
                     this.nickname = "一丝丝纯真";
-                    this.imageId = R.mipmap.image_practice_repast_4;
+                    this.images = R.mipmap.image_practice_repast_4;
                     this.avatarId = R.mipmap.image_avatar_4;
                 }}, new Model() {{
                     this.name = "盐菜饭";
                     this.nickname = "等着你回来";
-                    this.imageId = R.mipmap.image_practice_repast_5;
+                    this.images = R.mipmap.image_practice_repast_5;
                     this.avatarId = R.mipmap.image_avatar_5;
                 }}, new Model() {{
                     this.name = "米豆腐";
                     this.nickname = "宝宝树人";
-                    this.imageId = R.mipmap.image_practice_repast_6;
+                    this.images = R.mipmap.image_practice_repast_6;
                     this.avatarId = R.mipmap.image_avatar_6;
                 }});
     }

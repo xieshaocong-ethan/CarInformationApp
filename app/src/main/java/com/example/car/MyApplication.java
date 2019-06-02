@@ -22,6 +22,7 @@ import com.util.DynamicTimeFormat;
  */
 public class MyApplication extends org.litepal.LitePalApplication{
     private static RequestQueue queues ;
+
     static {
         //启用矢量图兼容
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);

@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.car.MyConstant;
 import com.example.car.R;
 
 public class SmartViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -88,6 +89,13 @@ public class SmartViewHolder extends RecyclerView.ViewHolder implements View.OnC
         View view = findViewById(id);
         if (view instanceof ImageView) {
             ((ImageView) view).setImageResource(imageId);
+        }
+        return this;
+    }
+    public SmartViewHolder setimage(int id,String imgPath, int cacheSize) {
+        View view = findViewById(id);
+        if (view instanceof ImageView) {
+            MyConstant.setCarImg(imgPath,cacheSize,(ImageView)view);
         }
         return this;
     }

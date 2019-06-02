@@ -20,6 +20,6 @@ public class MyConstant {
                 new BitmapLruCache(cacheSize) {});
         ImageLoader.ImageListener listener = ImageLoader.getImageListener(imageView,
                 R.drawable.image_placeholder, R.drawable.image_error);//加载时图片，默认图片
-        imageLoader.get(MyConstant.url+imgPath, listener,200,200);
+        imageLoader.get(MyConstant.url+imgPath, listener);
     }
 }
