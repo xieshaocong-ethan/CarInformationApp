@@ -83,7 +83,7 @@ public class CarMainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_main);
-
+        getCarList(MyConstant.url+"listCar");
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -287,14 +287,6 @@ public class CarMainActivity extends AppCompatActivity
         imageView:要设置的view
     *
     * */
-    public void setCarImg(String imgPath,int cacheSize,ImageView imageView) {
-
-        ImageLoader imageLoader = new ImageLoader(MyApplication.getHttpQueues(),
-                new BitmapLruCache(cacheSize) {});
-        ImageLoader.ImageListener listener = ImageLoader.getImageListener(imageView,
-                R.drawable.image_placeholder, R.drawable.image_error);//加载时图片，默认图片
-        imageLoader.get(MyConstant.url+imgPath, listener,200,200);
-    }
 
     public void getCarList(String url){
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, (String) null,

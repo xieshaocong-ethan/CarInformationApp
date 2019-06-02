@@ -37,7 +37,7 @@ public class ImgTestActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         ImageView imageView = findViewById(R.id.imageView4);
-        setCarImg("https://img-my.csdn.net/uploads/201404/13/1397393290_5765.jpeg",10*1024*1012,imageView);
+        setCarImg("http://192.168.0.109:8080/carImg/朗逸/1.jpg",10*1024*1012,imageView);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
