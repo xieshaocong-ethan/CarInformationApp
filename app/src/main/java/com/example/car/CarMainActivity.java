@@ -30,10 +30,13 @@ import android.widget.Toast;
 
 import com.adapter.BaseRecyclerAdapter;
 import com.adapter.SmartViewHolder;
+import com.alibaba.fastjson.JSON;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.car.bean.Car;
 import com.car.bean.User;
 import com.forum.ui.activity.ForumActivity;
@@ -42,11 +45,13 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.scwang.smartrefresh.layout.util.DensityUtil;
 
+import org.json.JSONObject;
 import org.litepal.crud.DataSupport;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -59,7 +64,7 @@ import java.util.List;
 //接口地址：http://localhost:18080/carServer/listCar
 public class CarMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    List<Car> cas;
     private class Model {
         int imageId;
         int avatarId;
@@ -289,5 +294,29 @@ public class CarMainActivity extends AppCompatActivity
         ImageLoader.ImageListener listener = ImageLoader.getImageListener(imageView,
                 R.drawable.image_placeholder, R.drawable.image_error);//加载时图片，默认图片
         imageLoader.get(MyConstant.url+imgPath, listener,200,200);
+    }
+
+    public void getCarList(String url){
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, (String) null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject jsonObject) {//jsonObject为请求返回的Json格式数据
+
+                        com.alibaba.fastjson.JSONArray jsonArray = JSON.parseArray(jsonObject.toString());
+                        cas = JSON.parseArray(jsonArray.toJSONString(), Car.class);
+
+                        Log.e("json", "parseResponseData()中解析json出现异常\"");
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        //Toast.makeText(LoginActivity.this,volleyError.toString(),Toast.LENGTH_LONG).show();
+                    }
+                });
+        //设置请求的Tag标签，可以在全局请求队列中通过Tag标签进行请求的查找
+        request.setTag("testPost");
+        //将请求加入全局队列中
+        MyApplication.getHttpQueues().add(request);
     }
 }
