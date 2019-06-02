@@ -28,10 +28,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImgTestActivity extends AppCompatActivity {
-
+    String s = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_img_test);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
