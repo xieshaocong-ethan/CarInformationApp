@@ -8,10 +8,11 @@
     android:background="@android:color/white"
     tools:context="com.example.car.CarDetailActivity">
 
-    <android.support.v7.widget.Toolbar style="@style/AppTheme.Toolbar"
+    <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
+        style="@style/AppTheme.Toolbar"
         app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
-        app:title="@string/app_name"/>
+        app:title="@string/app_name" />
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
