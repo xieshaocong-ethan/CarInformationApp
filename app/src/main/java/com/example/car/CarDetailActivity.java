@@ -1,13 +1,23 @@
 package com.example.car;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.TextView;
 
+import com.car.bean.User;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+
+import org.litepal.crud.DataSupport;
+
+import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CarDetailActivity extends AppCompatActivity {
 
@@ -33,6 +43,11 @@ public class CarDetailActivity extends AppCompatActivity {
             refreshLayout.autoRefresh();
         }
 
+
     }
+
+
+
+
 
 }

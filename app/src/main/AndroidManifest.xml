@@ -16,8 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        >
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ImgTestActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
 
         <provider
@@ -30,13 +33,9 @@
                 android:resource="@xml/photo" />
         </provider>
 
-        <activity android:name="com.explore.MainActivity"
-            android:roundIcon="@mipmap/ic_launcher_round"
-            >
-
-
-        </activity>
-
+        <activity
+            android:name="com.explore.MainActivity"
+            android:roundIcon="@mipmap/ic_launcher_round" />
         <activity
             android:name=".CarMainActivity"
             android:label="@string/app_name"
@@ -45,143 +44,129 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.car.LoginActivity" />
 
-        </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity
-            android:name=".RegistActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- 论坛模块-->
-
-        <activity
-            android:name="com.forum.ui.activity.ForumActivity"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".RegistActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CarDetailActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- 论坛模块 -->
+        <activity
+            android:name="com.forum.ui.activity.ForumActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.forum.ui.activity.LoginActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/login"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.forum.ui.activity.ScanQRCodeActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/scan_qr_code"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.forum.ui.activity.TopicActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/topic"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.forum.ui.activity.TopicCompatActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/topic"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.forum.ui.activity.CreateTopicActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/new_topic"
             android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-
         <activity
             android:name="com.forum.ui.activity.MarkdownPreviewActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/markdown_preview"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.forum.ui.activity.ImagePreviewActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/image_preview"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.forum.ui.activity.UserDetailActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/user_detail"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.forum.ui.activity.NotificationActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/notification"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.forum.ui.activity.NotificationCompatActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/notification"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.forum.ui.activity.SettingActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/setting"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.forum.ui.activity.ModifyTopicSignActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/modify_topic_sign"
             android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="stateHidden|adjustResize" />
-
         <activity
             android:name="com.forum.ui.activity.AboutActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/about"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.forum.ui.activity.CrashLogActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_crash"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
-
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.forum.ui.activity.StandardLinkRouterActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize">
+            android:screenOrientation="portrait">
             <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
-                    android:scheme="https"
                     android:host="cnodejs.org"
-                    android:pathPrefix="/topic/" />
+                    android:pathPrefix="/topic/"
+                    android:scheme="https" />
             </intent-filter>
             <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
-                    android:scheme="https"
                     android:host="cnodejs.org"
-                    android:pathPrefix="/user/" />
+                    android:pathPrefix="/user/"
+                    android:scheme="https" />
             </intent-filter>
         </activity>
-
     </application>
-
 
 </manifest>
