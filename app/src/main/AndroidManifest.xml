@@ -21,10 +21,7 @@
             android:name=".ImgTestActivity"
             android:label="@string/title_activity_img_test"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name="com.adapter.TestImgActivity"
-            android:label="@string/title_activity_test_img"
-            android:theme="@style/AppTheme.NoActionBar" />
+
 
         <provider
             android:name="android.support.v4.content.FileProvider"

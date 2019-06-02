@@ -64,7 +64,7 @@ import java.util.List;
 //接口地址：http://localhost:18080/carServer/listCar
 public class CarMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    List<Car> cas;
+    List<Car> cars;
     private class Model {
         int imageId;
         int avatarId;
@@ -295,7 +295,7 @@ public class CarMainActivity extends AppCompatActivity
                     public void onResponse(JSONObject jsonObject) {//jsonObject为请求返回的Json格式数据
 
                         com.alibaba.fastjson.JSONArray jsonArray = JSON.parseArray(jsonObject.toString());
-                        cas = JSON.parseArray(jsonArray.toJSONString(), Car.class);
+                        cars = JSON.parseArray(jsonArray.toJSONString(), Car.class);
 
                         Log.e("json", "parseResponseData()中解析json出现异常\"");
                     }
