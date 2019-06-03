@@ -6,19 +6,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/login"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/login1"
             android:title="登录" />
         <item
             android:id="@+id/main"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/home1"
             android:title="主页" />
         <item
             android:id="@+id/luntan"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/forum1"
             android:title="论坛" />
         <item
             android:id="@+id/imgTest"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/send2"
             android:title="测试" />
     </group>
 
@@ -26,11 +26,11 @@
         <menu>
             <item
                 android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/share"
                 android:title="@string/menu_share" />
             <item
                 android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/sen2"
                 android:title="@string/menu_send" />
         </menu>
     </item>

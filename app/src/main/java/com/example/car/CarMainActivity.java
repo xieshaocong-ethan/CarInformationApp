@@ -55,7 +55,7 @@ public class CarMainActivity extends AppCompatActivity
     public static final String url = MyConstant.url;
     List<Car> cars;
     private class Model {
-        int images;
+        String images;
         int avatarId;
         String name;
         String nickname;
@@ -121,7 +121,7 @@ public class CarMainActivity extends AppCompatActivity
                 protected void onBindViewHolder(SmartViewHolder holder, Model model, int position) {
                     holder.text(R.id.name, model.name);
                     holder.text(R.id.nickname, model.nickname);
-                    holder.setimage(R.id.image,"carImg/Model3/1.jpg",10*1024*1024);
+                    holder.setimage(R.id.image,model.images,10*1024*1024);
                     holder.image(R.id.avatar, model.avatarId);
                 }
             }
@@ -186,32 +186,32 @@ public class CarMainActivity extends AppCompatActivity
                 new Model() {{
                     this.name = "但家香酥鸭";
                     this.nickname = "爱过那张脸";
-                    this.images = R.mipmap.image_practice_repast_1;
+                    //this.images = R.mipmap.image_practice_repast_1;
                     this.avatarId = R.mipmap.image_avatar_1;
                 }}, new Model() {{
                     this.name = "香菇蒸鸟蛋";
                     this.nickname = "淑女算个鸟";
-                    this.images = R.mipmap.image_practice_repast_2;
+                    //this.images = R.mipmap.image_practice_repast_2;
                     this.avatarId = R.mipmap.image_avatar_2;
                 }}, new Model() {{
                     this.name = "花溪牛肉粉";
                     this.nickname = "性感妩媚";
-                    this.images = R.mipmap.image_practice_repast_3;
+                   // this.images = R.mipmap.image_practice_repast_3;
                     this.avatarId = R.mipmap.image_avatar_3;
                 }}, new Model() {{
                     this.name = "破酥包";
                     this.nickname = "一丝丝纯真";
-                    this.images = R.mipmap.image_practice_repast_4;
+                    //this.images = R.mipmap.image_practice_repast_4;
                     this.avatarId = R.mipmap.image_avatar_4;
                 }}, new Model() {{
                     this.name = "盐菜饭";
                     this.nickname = "等着你回来";
-                    this.images = R.mipmap.image_practice_repast_5;
+                    //this.images = R.mipmap.image_practice_repast_5;
                     this.avatarId = R.mipmap.image_avatar_5;
                 }}, new Model() {{
                     this.name = "米豆腐";
                     this.nickname = "宝宝树人";
-                    this.images = R.mipmap.image_practice_repast_6;
+                    //this.images = R.mipmap.image_practice_repast_6;
                     this.avatarId = R.mipmap.image_avatar_6;
                 }});
     }
