@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="48dp"
             android:layout_marginRight="48dp"
-            android:src="@drawable/logo_light"
+            android:src="@drawable/sen2"
             android:scaleType="fitCenter"
             android:adjustViewBounds="true" />
 
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="@string/app_slogan"
+            android:text="@string/app_name"
             android:textColor="@android:color/white"
             android:textSize="18sp" />
 

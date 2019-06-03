@@ -17,11 +17,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ForumWebActivity"></activity>
         <activity
             android:name=".ImgTestActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -34,6 +34,15 @@
         </provider>
 
         <activity
+            android:name=".LaunchActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name="com.explore.MainActivity"
             android:roundIcon="@mipmap/ic_launcher_round" />
         <activity
@@ -43,12 +52,6 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.car.LoginActivity" />
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".LoginActivity"
@@ -61,7 +64,10 @@
         <activity
             android:name=".CarDetailActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar" /> <!-- 论坛模块 -->
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ProfileActivity"
+            android:label="@string/app_name" /> <!-- 论坛模块 -->
         <activity
             android:name="com.forum.ui.activity.ForumActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"

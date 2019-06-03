@@ -1,6 +1,7 @@
 package com.explore
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -20,12 +21,16 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
+import com.example.car.CarMainActivity
+import com.example.car.LoginActivity
+import com.example.car.ProfileActivity
 import com.example.car.R
 import kotlinx.android.synthetic.main.activity_explore.*
 import kotlinx.android.synthetic.main.layout_card.*
 import ethan.demo.library.CardLayoutHelper
 import ethan.demo.library.OnCardLayoutListener
 import com.explore.ToolBarEntity
+import com.forum.ui.activity.ForumActivity
 import java.util.*
 
 
@@ -145,9 +150,34 @@ class MainActivity : AppCompatActivity() {
                         layoutParams.weight = 1f
                         layout_top_menu.addView(linearLayout, layoutParams)
                         linearLayout.setOnClickListener {
-                            Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
+                            //Toast.makeText(this, item.title, Toast.LENGTH_SHORT).show()
+                            if (items[0].equals(item)) run {
+                                val intent = Intent(this, CarMainActivity::class.java)
+                                startActivity(intent)
+                            }else if (items[1].equals(item)) run {
+                                Toast.makeText(this, "\uD83D\uDE0F", Toast.LENGTH_SHORT).show()
+                            } else if (items[2].equals(item)) run {
+                                val intent = Intent(this, ForumActivity::class.java)
+                                startActivity(intent)
+                            } else if (items[3].equals(item)) run {
+                                val intent = Intent(this, ProfileActivity::class.java)
+                                startActivity(intent)
+                            }
                         }
                     }
+                    /*linearLayout.setOnClickListener {
+                        if (items[0].equals(it)) run {
+                            val intent = Intent(this, CarMainActivity::class.java)
+                            startActivity(intent)
+                            // Handle the camera action
+                        } else if (id == R.id.luntan) run {
+                            val intent = Intent(this, ForumActivity::class.java)
+                            startActivity(intent)
+                        } else if (id == R.id.imgTest) run {
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                        }*/
+
                 }
             }
         }

@@ -84,6 +84,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'org.tautua.markdownpapers:markdownpapers-core:1.4.4'
+    implementation 'com.lcodecorex:tkrefreshlayout:1.0.7'
+    api 'com.just.agentweb:agentweb:4.0.3-beta'
+    api 'com.just.agentweb:filechooser:4.0.3-beta'
     implementation project(':library')
 }
 repositories {

@@ -164,4 +164,7 @@
     <string name="title_activity_series_detail">SeriesDetailActivity</string>
     <string name="title_activity_test_img">TestImgActivity</string>
     <string name="title_activity_img_test">ImgTestActivity</string>
+    <string name="title_activity_forum_web">ForumWebActivity</string>
+
+    <string name="title_activity_forum_webv">ForumWebvActivity</string>
 </resources>

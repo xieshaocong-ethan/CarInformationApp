@@ -84,7 +84,6 @@ public class RegistActivity extends AppCompatActivity implements EasyPermissions
                 finish();
             }
         });
-
         id = findViewById(R.id.regist_uname);
         password = findViewById(R.id.regist_password);
         yanzhengma = findViewById(R.id.regist_yanzheng);

@@ -1,24 +1,31 @@
 package com.example.car;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,18 +35,30 @@ import com.alibaba.fastjson.JSON;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
+import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.car.bean.Car;
 import com.car.bean.User;
+import com.explore.MainActivity;
+import com.forum.model.entity.Model;
 import com.forum.ui.activity.ForumActivity;
+import com.google.gson.JsonArray;
+import com.just.agentweb.AgentWeb;
 import com.util.StatusBarUtil;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.scwang.smartrefresh.layout.util.DensityUtil;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.litepal.crud.DataSupport;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -52,18 +71,8 @@ import java.util.List;
 //接口地址：http://localhost:18080/carServer/listCar
 public class CarMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    public static final String url = MyConstant.url;
     List<Car> cars;
-    private class Model {
-        String images;
-        int avatarId;
-        String name;
-        String nickname;
 
-        public String getName() {
-            return name;
-        }
-    }
 
     private static boolean isFirstEnter = true;
     private BaseRecyclerAdapter<Model> mAdapter;
@@ -72,7 +81,6 @@ public class CarMainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_car_main);
-        getCarList(MyConstant.url+"listCar");
         final Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -109,6 +117,11 @@ public class CarMainActivity extends AppCompatActivity
         final RefreshLayout refreshLayout = findViewById(R.id.refreshLayout);
         refreshLayout.setEnableFooterFollowWhenNoMoreData(true);
 
+        //第一次进入演示刷新
+        if (isFirstEnter) {
+            isFirstEnter = false;
+            refreshLayout.autoRefresh();
+        }
 
         //初始化列表和监听
         View view = findViewById(R.id.recyclerView);
@@ -119,10 +132,10 @@ public class CarMainActivity extends AppCompatActivity
             recyclerView.setAdapter(mAdapter = new BaseRecyclerAdapter<Model>(loadModels(), R.layout.item_practice_repast) {
                 @Override
                 protected void onBindViewHolder(SmartViewHolder holder, Model model, int position) {
-                    holder.text(R.id.name, model.name);
-                    holder.text(R.id.nickname, model.nickname);
-                    holder.setimage(R.id.image,model.images,10*1024*1024);
-                    holder.image(R.id.avatar, model.avatarId);
+                    holder.text(R.id.name, model.getName());
+                    holder.text(R.id.nickname, model.getNickname());
+                    holder.setimage(R.id.image,model.getImage(),10*1024*1024);
+                    holder.setimage(R.id.avatar,model.getAvatar(),10*1024*1024);
                 }
             }
             );
@@ -165,7 +178,7 @@ public class CarMainActivity extends AppCompatActivity
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Model modle = mAdapter.get(position);
-                    Toast.makeText(getApplicationContext(),modle.name,Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),modle.getName(),Toast.LENGTH_LONG).show();
                 }
             });
         }
@@ -182,38 +195,55 @@ public class CarMainActivity extends AppCompatActivity
      * 模拟数据
      */
     private Collection<Model> loadModels() {
-        return Arrays.asList(
+        ArrayList<Model> arrayList = new ArrayList<>();
+        cars = MyConstant.getCars();
+        try {
+            for (Car car : cars) {
+
+
+                arrayList.add(new Model(){
+                    {this.setName(car.getName());
+                        this.setNickname(car.getBrand());;
+                        this.setNickname(car.getPurl()+".jpg");
+                        this.setImage(car.getPurl1());}
+
+                });
+            }
+        }catch (Exception e){e.printStackTrace();};
+
+        return  arrayList;
+        /*return Arrays.asList(
                 new Model() {{
                     this.name = "但家香酥鸭";
                     this.nickname = "爱过那张脸";
-                    //this.images = R.mipmap.image_practice_repast_1;
+                    this.imageId = R.mipmap.image_practice_repast_1;
                     this.avatarId = R.mipmap.image_avatar_1;
                 }}, new Model() {{
                     this.name = "香菇蒸鸟蛋";
                     this.nickname = "淑女算个鸟";
-                    //this.images = R.mipmap.image_practice_repast_2;
+                    this.imageId = R.mipmap.image_practice_repast_2;
                     this.avatarId = R.mipmap.image_avatar_2;
                 }}, new Model() {{
                     this.name = "花溪牛肉粉";
                     this.nickname = "性感妩媚";
-                   // this.images = R.mipmap.image_practice_repast_3;
+                    this.imageId = R.mipmap.image_practice_repast_3;
                     this.avatarId = R.mipmap.image_avatar_3;
                 }}, new Model() {{
                     this.name = "破酥包";
                     this.nickname = "一丝丝纯真";
-                    //this.images = R.mipmap.image_practice_repast_4;
+                    this.imageId = R.mipmap.image_practice_repast_4;
                     this.avatarId = R.mipmap.image_avatar_4;
                 }}, new Model() {{
                     this.name = "盐菜饭";
                     this.nickname = "等着你回来";
-                    //this.images = R.mipmap.image_practice_repast_5;
+                    this.imageId = R.mipmap.image_practice_repast_5;
                     this.avatarId = R.mipmap.image_avatar_5;
                 }}, new Model() {{
                     this.name = "米豆腐";
                     this.nickname = "宝宝树人";
-                    //this.images = R.mipmap.image_practice_repast_6;
+                    this.imageId = R.mipmap.image_practice_repast_6;
                     this.avatarId = R.mipmap.image_avatar_6;
-                }});
+                }});*/
     }
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -225,10 +255,10 @@ public class CarMainActivity extends AppCompatActivity
             startActivity(intent);
             // Handle the camera action
         } else if (id == R.id.luntan) {
-            Intent intent = new Intent(this, ForumActivity.class);
+            Intent intent = new Intent(this, ForumWebActivity.class);
             startActivity(intent);
         } else if (id == R.id.imgTest) {
-            Intent intent = new Intent(this, ImgTestActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         } else if (id == R.id.imgTest) {
 
@@ -273,27 +303,5 @@ public class CarMainActivity extends AppCompatActivity
     *
     * */
 
-    public void getCarList(String url){
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, (String) null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject jsonObject) {//jsonObject为请求返回的Json格式数据
 
-                        com.alibaba.fastjson.JSONArray jsonArray = JSON.parseArray(jsonObject.toString());
-                        cars = JSON.parseArray(jsonArray.toJSONString(), Car.class);
-
-                        Log.e("json", "parseResponseData()中解析json出现异常\"");
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError volleyError) {
-                        //Toast.makeText(LoginActivity.this,volleyError.toString(),Toast.LENGTH_LONG).show();
-                    }
-                });
-        //设置请求的Tag标签，可以在全局请求队列中通过Tag标签进行请求的查找
-        request.setTag("testPost");
-        //将请求加入全局队列中
-        MyApplication.getHttpQueues().add(request);
-    }
 }
