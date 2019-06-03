@@ -13,10 +13,12 @@ import android.widget.AdapterView;
 
 import com.adapter.BaseRecyclerAdapter;
 import com.adapter.SmartViewHolder;
+import com.forum.model.entity.Series;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 import static android.R.layout.simple_list_item_2;
@@ -26,6 +28,8 @@ public class SeriesDetailActivity extends AppCompatActivity implements AdapterVi
     private Toolbar mToolbar;
     private RefreshLayout mRefreshLayout;
     private static boolean isFirstEnter = true;
+    private BaseRecyclerAdapter<Series> mAdapter;
+    List<Series> carseries;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +44,7 @@ public class SeriesDetailActivity extends AppCompatActivity implements AdapterVi
         });
 
         mRefreshLayout = findViewById(R.id.refreshLayout);
-        if (isFirstEnter) {
-            isFirstEnter = false;
-            mRefreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
-        }
+
 
         View view = findViewById(R.id.recyclerView);
         if (view instanceof RecyclerView) {
@@ -51,18 +52,14 @@ public class SeriesDetailActivity extends AppCompatActivity implements AdapterVi
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.addItemDecoration(new DividerItemDecoration(this, VERTICAL));
             recyclerView.setItemAnimator(new DefaultItemAnimator());
-            List<Item> items = new ArrayList<>();
-            items.addAll(Arrays.asList(Item.values()));
-            items.addAll(Arrays.asList(Item.values()));
-            items.addAll(Arrays.asList(Item.values()));
-            recyclerView.setAdapter(new BaseRecyclerAdapter<Item>(items, simple_list_item_2,this) {
+            recyclerView.setAdapter(mAdapter = new BaseRecyclerAdapter<Series>(loadModels(), R.layout.item_detail_car) {
                 @Override
-                protected void onBindViewHolder(SmartViewHolder holder, Item model, int position) {
-                    holder.text(android.R.id.text1, model.name());
-                    holder.text(android.R.id.text2, model.nameId);
-                    holder.textColorId(android.R.id.text2, R.color.colorTextAssistant);
+                protected void onBindViewHolder(SmartViewHolder holder, Series series, int position) {
+                    holder.setimage(R.id.imageView2,series.getSeriesimage(),10*1024*1024);
+                    holder.text(R.id.textView5,series.getSeriesname());
                 }
             });
+
         }
     }
 
@@ -71,16 +68,26 @@ public class SeriesDetailActivity extends AppCompatActivity implements AdapterVi
 
     }
 
-    private enum Item {
-        默认主题(R.string.app_name),
-        橙色主题(R.string.app_name),
-        红色主题(R.string.app_name),
-        绿色主题(R.string.app_name),
-        蓝色主题(R.string.app_name),
-        ;
-        public int nameId;
-        Item(@StringRes int nameId) {
-            this.nameId = nameId;
-        }
+    private Collection<Series> loadModels() {
+        ArrayList<Series> arrayList = new ArrayList<>();
+        // carseries = MyConstant.getCars();
+        try {
+            for (Series carse : carseries) {
+
+
+                arrayList.add(new Series(){
+                    {   this.setBrand(carse.getBrand());
+                        this.setCname(carse.getCname());
+                        this.setSeriesid(carse.getSeriesid());
+                        this.setSeriesname(carse.getSeriesname());
+                        this.setSeriesimage(carse.getSeriesimage());
+                    }
+
+                });
+            }
+        }catch (Exception e){e.printStackTrace();};
+
+        return  arrayList;
     }
+
 }
