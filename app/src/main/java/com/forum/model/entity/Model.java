@@ -2,6 +2,10 @@ package com.forum.model.entity;
 
 public class Model {
     String image;
+    String carid;
+    String avatar;
+    String name;
+    String nickname;
 
     public String getImage() {
         return image;
@@ -35,7 +39,11 @@ public class Model {
         this.nickname = nickname;
     }
 
-    String avatar;
-    String name;
-    String nickname;
+    public String getCarid() {
+        return carid;
+    }
+
+    public void setCarid(String carid) {
+        this.carid = carid;
+    }
 }

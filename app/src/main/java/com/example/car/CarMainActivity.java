@@ -202,10 +202,12 @@ public class CarMainActivity extends AppCompatActivity
 
 
                 arrayList.add(new Model(){
-                    {this.setName(car.getName());
+                    {   this.setName(car.getName());
                         this.setNickname(car.getBrand());;
                         this.setNickname(car.getPurl()+".jpg");
-                        this.setImage(car.getPurl1());}
+                        this.setImage(car.getPurl1());
+                        this.setCarid(car.getCarid());
+                    }
 
                 });
             }
