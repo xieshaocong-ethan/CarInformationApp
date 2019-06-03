@@ -3,16 +3,47 @@ package com.forum.model.entity;
 public class Series {
     String brand;
     String cname;
-    String sname1;
-    String image1;
-    String sname2;
-    String image2;
-    String sname3;
-    String image3;
-    String sname4;
-    String image4;
-    String sname5;
-    String image5;
-    String sname6;
-    String image6;
+    String seriesid;
+    String seriesname;
+    String seriesimage;
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public String getCname() {
+        return cname;
+    }
+
+    public void setCname(String cname) {
+        this.cname = cname;
+    }
+
+    public String getSeriesid() {
+        return seriesid;
+    }
+
+    public void setSeriesid(String seriesid) {
+        this.seriesid = seriesid;
+    }
+
+    public String getSeriesname() {
+        return seriesname;
+    }
+
+    public void setSeriesname(String seriesname) {
+        this.seriesname = seriesname;
+    }
+
+    public String getSeriesimage() {
+        return seriesimage;
+    }
+
+    public void setSeriesimage(String seriesimage) {
+        this.seriesimage = seriesimage;
+    }
 }

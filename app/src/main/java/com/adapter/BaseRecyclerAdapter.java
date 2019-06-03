@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListAdapter;
 
+import com.forum.model.entity.Series;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -73,6 +75,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<SmartV
     }
 
     protected abstract void onBindViewHolder(SmartViewHolder holder, T model, int position);
+
 
     @Override
     public int getItemCount() {
