@@ -36,15 +36,18 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.ImageRequest;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.car.bean.Car;
 import com.car.bean.User;
 import com.forum.ui.activity.ForumActivity;
+import com.google.gson.JsonArray;
 import com.util.StatusBarUtil;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.scwang.smartrefresh.layout.util.DensityUtil;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.litepal.crud.DataSupport;
 
@@ -289,21 +292,23 @@ public class CarMainActivity extends AppCompatActivity
     * */
 
     public void getCarList(String url){
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, (String) null,
-                new Response.Listener<JSONObject>() {
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, url, (String) null,
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(JSONObject jsonObject) {//jsonObject为请求返回的Json格式数据
+                    public void onResponse(JSONArray jsonObject) {//jsonObject为请求返回的Json格式数据
 
                         com.alibaba.fastjson.JSONArray jsonArray = JSON.parseArray(jsonObject.toString());
                         cars = JSON.parseArray(jsonArray.toJSONString(), Car.class);
-
-                        Log.e("json", "parseResponseData()中解析json出现异常\"");
+                        Log.i("connection",jsonObject.toString() );
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        //Toast.makeText(LoginActivity.this,volleyError.toString(),Toast.LENGTH_LONG).show();
+                        Log.i("fail",volleyError.toString() );
+                        String s = volleyError.toString();
+                        System.out.println(s);
+                        Toast.makeText(CarMainActivity.this,volleyError.toString(),Toast.LENGTH_LONG).show();
                     }
                 });
         //设置请求的Tag标签，可以在全局请求队列中通过Tag标签进行请求的查找
