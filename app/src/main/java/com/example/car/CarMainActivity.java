@@ -179,6 +179,9 @@ public class CarMainActivity extends AppCompatActivity
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Model modle = mAdapter.get(position);
                     Toast.makeText(getApplicationContext(),modle.getName(),Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(CarMainActivity.this,SeriesDetailActivity.class);
+                    startActivity(intent);
+
                 }
             });
         }
@@ -204,8 +207,7 @@ public class CarMainActivity extends AppCompatActivity
                 arrayList.add(new Model(){
                     {   this.setName(car.getName());
                         this.setNickname(car.getBrand());;
-                        this.setNickname(car.getPurl()+".jpg");
-                        this.setImage(car.getPurl1());
+                        this.setImage(car.getPurl()+".jpg");
                         this.setCarid(car.getCarid());
                     }
 

@@ -15,7 +15,7 @@
         app:title="@string/app_name" />
 
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
-        android:id="@+id/refreshLayout"
+        android:id="@+id/refreshLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:srlAccentColor="#fff"

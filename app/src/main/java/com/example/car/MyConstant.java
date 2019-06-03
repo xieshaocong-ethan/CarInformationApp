@@ -31,13 +31,13 @@ import java.util.Map;
 public class MyConstant {
 
     public static final String PIC_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CAR";
-    public static final String url = "http://192.168.43.72:18080/";
-    public static final String carurl = "http://192.168.43.72:18080/listCar";
+    public static final String url = "http://192.168.0.105:18080/";
+    public static final String carurl = "http://192.168.0.105:18080/listCar";
 
     public static List<Car> getCars() {
         return cars;
     }
-    List<CarDetail> carDetails = null;
+    public static List<CarDetail> carDetails = null;
     static List<Car> cars;
 
     public static void setCarImg(String imgPath, int cacheSize, ImageView imageView) {
@@ -77,7 +77,7 @@ public class MyConstant {
         MyApplication.getHttpQueues().add(request);
     }
 
-    private void getcarDetail(String carid) {
+    public static void getcarDetail(String carid) {
         String url = MyConstant.url+"getCarDitail";
         Map<String,String> map = new HashMap<>();
         map.put("carId",carid);
@@ -87,7 +87,7 @@ public class MyConstant {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject jsonObject) {//jsonObject为请求返回的Json格式数据
-
+                    parseCarDetail(jsonObject);
                     }
                 },
                 new Response.ErrorListener() {
@@ -103,12 +103,12 @@ public class MyConstant {
         //将请求加入全局队列中
         MyApplication.getHttpQueues().add(request);
     }
-    public List<CarDetail> parseCarDetail(JSONObject jsonObject){
+    public static List<CarDetail> parseCarDetail(JSONObject jsonObject){
         com.alibaba.fastjson.JSONObject json = JSON.parseObject(jsonObject.toString());
         List<CarDetail> carDetails = null;
-        com.alibaba.fastjson.JSONObject jsonPara1 = (com.alibaba.fastjson.JSONObject) json.get("params1");
+        com.alibaba.fastjson.JSONObject jsonPara1 = json.getJSONObject("params1");
         CarDetail carDetail1 = JSON.toJavaObject(jsonPara1,CarDetail.class);
-        com.alibaba.fastjson.JSONObject jsonPara2 = (com.alibaba.fastjson.JSONObject) json.get("params1");
+        com.alibaba.fastjson.JSONObject jsonPara2 = (com.alibaba.fastjson.JSONObject) json.getJSONObject("params1");
         CarDetail carDetail2 = JSON.toJavaObject(jsonPara1,CarDetail.class);
         carDetails.add(carDetail1);
         carDetails.add(carDetail2);
