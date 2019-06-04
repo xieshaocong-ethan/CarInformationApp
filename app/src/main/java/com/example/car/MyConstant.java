@@ -15,7 +15,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.car.bean.Car;
-import com.car.bean.CarDetail;
+import com.forum.model.entity.CarDetail;
+import com.scwang.smartrefresh.header.material.CircleImageView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -34,8 +35,8 @@ import static android.net.TrafficStats.getTotalTxBytes;
 public class MyConstant extends Service {
 
     public static final String PIC_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CAR";
-    public static final String url = "http://192.168.43.72:18080/";
-    public static final String carurl = "http://192.168.43.72:18080/listCar";
+    public static final String url = "http://192.168.0.108:8080/";
+    public static final String carurl = "http://192.168.0.108:8080/listCar";
     public static final String TAG = "LoadData";
     public static final String trafficTAG = "总流量";
     public static double tf =0;
@@ -81,7 +82,16 @@ public class MyConstant extends Service {
             imageLoader.get(MyConstant.url+imgPath, listener);
         }
     }
-
+    public static void setCarImg(String imgPath, int cacheSize, CircleImageView imageView) {
+        ImageLoader imageLoader = new ImageLoader(MyApplication.getHttpQueues(),
+                new BitmapLruCache(cacheSize) {
+                });
+        ImageLoader.ImageListener listener = ImageLoader.getImageListener(imageView,
+                R.drawable.image_placeholder, R.drawable.image_error);//加载时图片，默认图片
+        if (imageLoader.isCached(MyConstant.url + imgPath, 200, 200, imageView.getScaleType()) == false) {
+            imageLoader.get(MyConstant.url + imgPath, listener);
+        }
+    }
     public static void getCarList(){
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, carurl, (String) null,
                 new Response.Listener<JSONArray>() {
@@ -119,7 +129,9 @@ public class MyConstant extends Service {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray jsonArray) {//jsonObject为请求返回的Json格式数据
-                        parseCarDetail(jsonArray);
+                        //parseCarDetail(jsonArray);
+                        carDetails = JSON.parseArray(jsonArray.toString(),CarDetail.class);
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -175,7 +187,6 @@ public class MyConstant extends Service {
     }
 
     public static List<CarDetail> parseCarDetail(JSONArray jsonArray){
-        List<CarDetail> carDetails = null;
         carDetails = JSON.parseArray(jsonArray.toString(),CarDetail.class);
         return carDetails;
     }

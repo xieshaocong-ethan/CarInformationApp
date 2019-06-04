@@ -39,7 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:clipToPadding="false"
-                tools:listitem="@layout/item_detail_car"/>
+                tools:listitem="@layout/item_detail_car" />
 
             <FrameLayout
                 android:id="@+id/profile"
@@ -67,46 +67,57 @@
                 <!--2299ee-->
                 <!--3bb2ff-->
                 <RelativeLayout
+                    android:id="@+id/rl1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/dimenPaddingHorizontal">
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/avatar"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginLeft="@dimen/dimenPaddingCommon"
-                        android:layout_marginRight="@dimen/dimenPaddingCommon"
-                        android:src="@mipmap/refresh_loading01"
-                        app:civ_border_color="@android:color/white"
-                        app:civ_border_width="3dp" />
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="15dp"
+                        android:src="#aaa" />
 
-                    <TextView  style="@style/AppTheme.Label.Title.Large"
-                        android:id="@+id/title"
-                        android:layout_toEndOf="@id/avatar"
+                    <TextView
+                        android:id="@+id/title1"
+                        style="@style/AppTheme.Label.Title.Large"
+                        android:layout_alignTop="@+id/avatar"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_toEndOf="@+id/avatar"
                         android:layout_toRightOf="@id/avatar"
-                        android:textColor="@android:color/white"
-                        android:text="Frederik Hansen"/>
+                        android:text="Frederik Hansen"
+                        android:textColor="@android:color/white" />
 
-                    <TextView  style="@style/AppTheme.Label.Assistant"
+                    <TextView
                         android:id="@+id/assistant"
-                        android:layout_marginTop="@dimen/dimenPaddingDiminutive"
+                        style="@style/AppTheme.Label.Assistant"
+                        android:layout_below="@+id/title1"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="6dp"
                         android:layout_marginBottom="@dimen/dimenPaddingDiminutive"
                         android:layout_toEndOf="@id/avatar"
                         android:layout_toRightOf="@id/avatar"
-                        android:layout_below="@+id/title"
-                        android:textColor="@android:color/white"
-                        android:text="Denmark,Nyborg"/>
+                        android:text="Denmark,Nyborg"
+                        android:textColor="@android:color/white" />
 
                     <com.flyco.roundview.RoundTextView
                         android:id="@+id/photos"
                         style="@style/AppTheme.Label.Title.Large"
-                        android:layout_width="72dp"
-                        android:layout_height="49dp"
-                        android:layout_below="@id/assistant"
-                        android:layout_marginStart="200dp"
-                        android:layout_marginLeft="200dp"
-                        android:layout_marginTop="1dp"
+                        android:layout_width="59dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/assistant"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="213dp"
+                        android:layout_marginLeft="213dp"
+                        android:layout_marginEnd="4dp"
+                        android:layout_marginBottom="0dp"
                         android:layout_toEndOf="@id/avatar"
                         android:layout_toRightOf="@id/avatar"
                         android:paddingLeft="@dimen/dimenPaddingHorizontal"

@@ -28,6 +28,7 @@ public class LaunchActivity extends BaseActivity implements Runnable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
         MyConstant.getCarList();
+        MyConstant.getcarDetail("1");
         Intent startIntent = new Intent(this, MyConstant.class);
          startService(startIntent);
         if (!isTaskRoot()) {

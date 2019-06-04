@@ -64,9 +64,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
-/**
- * 餐饮美食
- */
 
 
 //接口地址：http://localhost:18080/carServer/listCar
@@ -134,8 +131,11 @@ public class CarMainActivity extends AppCompatActivity
             cars = MyConstant.cars;
             ArrayList<Car> carArrayList = new ArrayList<>(
             );
-            for (int iiii= 0;iiii<cars.size();iiii++) { carArrayList.add(cars.get(iiii));
-            }
+            try {
+                for (int iiii = 0; iiii <cars.size(); iiii++) {
+                    carArrayList.add(cars.get(iiii));
+                }
+            }catch (Exception e){e.printStackTrace();}
             recyclerView.setAdapter(mAdapter = new BaseRecyclerAdapter<Car>(carArrayList,R.layout.item_practice_repast) {
                 @Override
                 protected void onBindViewHolder(SmartViewHolder holder, Car car, int position) {
@@ -186,8 +186,9 @@ public class CarMainActivity extends AppCompatActivity
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Car car = mAdapter.get(position);
                     Toast.makeText(getApplicationContext(),car.getName(),Toast.LENGTH_LONG).show();
+
                     Intent intent = new Intent(CarMainActivity.this,SeriesDetailActivity.class);
-                    intent.putExtra("dicarid", car.getCarid());
+                    intent.putExtra("dicarid",car.getCarid());
                     intent.putExtra("index",cars.indexOf(mAdapter.get(position)));
                     startActivity(intent);
 
