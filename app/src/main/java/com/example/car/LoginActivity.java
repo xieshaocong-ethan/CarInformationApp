@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -154,7 +155,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public static String saveImageToGallery(Bitmap bitmap, String fileName) {
+    public String saveImageToGallery(Bitmap bitmap, String fileName) {
         // 保存图片至指定路径  Context context,
         String storePath = MyConstant.PIC_PATH;
         File appDir = new File(storePath);
@@ -172,18 +173,14 @@ public class LoginActivity extends AppCompatActivity {
         try {
             FileOutputStream fos = new FileOutputStream(file);
             //通过io流的方式来压缩保存图片(80代表压缩20%)
-            boolean isSuccess = bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos);
+            boolean isSuccess = bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.flush();
             fos.close();
 
             //发送广播通知系统图库刷新数据
-//            Uri uri = Uri.fromFile(file);
-//            context.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
-//            if (isSuccess) {
-//                return true;
-//            } else {
-//                return false;
-//            }
+            Uri uri = Uri.fromFile(file);
+            this.sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, uri));
+
         } catch (IOException e) {
             Log.e("??", "saveImageToGallery: ",e);
 

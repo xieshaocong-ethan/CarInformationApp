@@ -22,7 +22,7 @@
     <color name="window_background_light">#ffeeeeee</color>
     <color name="window_background_dark">#ff303030</color>
     <color name="list_divider_light">#ffe0e0e0</color>
-    <color name="list_divider_dark">#ff666666</color>
+    <color name="list_divider_dark">#656161</color>
 
     <color name="translucent_status">#66000000</color>
 

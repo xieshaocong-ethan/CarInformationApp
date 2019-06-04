@@ -26,41 +26,46 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
+                android:background="@color/list_divider_dark"
+                android:gravity="center_horizontal"
+
+                android:orientation="vertical">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:layout_marginTop="70dp"
-                    app:civ_border_width="2dp"
+                    android:src="@mipmap/image_avatar_3"
                     app:civ_border_color="@android:color/white"
-                    android:src="@mipmap/image_avatar_3"/>
+                    app:civ_border_width="2dp" />
 
-                <TextView  style="@style/AppTheme.Label.Title.Large"
+                <TextView
                     android:id="@+id/name"
+                    style="@style/AppTheme.Label.Title.Large"
                     android:layout_marginTop="@dimen/dimenPaddingCommon"
-                    android:textColor="@android:color/white"
-                    android:text="Kanye West"/>
+                    android:text="name"
+                    android:textColor="@android:color/white" />
 
-                <TextView  style="@style/AppTheme.Label.Description"
+                <TextView
                     android:id="@+id/email"
+                    style="@style/AppTheme.Label.Description"
                     android:layout_marginTop="@dimen/dimenPaddingCommon"
-                    android:textColor="@android:color/white"
-                    android:text="American hip hop musician, songwriter,\nrecord producer and film director"/>
+                    android:text="email@163.com"
+                    android:textColor="@android:color/white" />
 
-                <com.flyco.roundview.RoundTextView style="@style/AppTheme.Label.Title"
-                    android:textColor="@android:color/white"
+                <com.flyco.roundview.RoundTextView
+                    style="@style/AppTheme.Label.Title"
                     android:layout_marginTop="25dp"
-                    android:paddingTop="10dp"
                     android:paddingLeft="40dp"
+                    android:paddingTop="10dp"
                     android:paddingRight="40dp"
                     android:paddingBottom="10dp"
-                    android:text="Edit profile"
-                    app:rv_strokeWidth="1dp"
+                    android:text="编辑个人信息"
+                    android:textColor="@android:color/white"
                     app:rv_isRadiusHalfHeight="true"
-                    app:rv_strokeColor="@android:color/white"/>
+                    app:rv_strokeColor="@android:color/white"
+                    app:rv_strokeWidth="1dp" />
 
             </LinearLayout>
 
@@ -85,11 +90,14 @@
                         android:contentDescription="@string/app_name"
                         app:srcCompat="@drawable/ic_fly_refresh_folder"/>
                 </com.flyco.roundview.RoundFrameLayout>
-                <TextView style="@style/AppTheme.Label.Title"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="30dp"
-                    android:layout_marginRight="30dp"
-                    android:text="Show My Floder"/>
+
+                <Button
+                    android:id="@+id/zhuxiao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#44ffffff"
+                    android:text="注销" />
             </LinearLayout>
 
             <LinearLayout

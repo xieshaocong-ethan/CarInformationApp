@@ -197,10 +197,10 @@ public class CarMainActivity extends AppCompatActivity
         }
 
         //状态栏透明和间距处理
-        StatusBarUtil.darkMode(this);
-        StatusBarUtil.setPaddingSmart(this, view);
-        StatusBarUtil.setPaddingSmart(this, toolbar);
-        StatusBarUtil.setPaddingSmart(this, findViewById(R.id.blurView));
+//        StatusBarUtil.darkMode(this);
+//        StatusBarUtil.setPaddingSmart(this, view);
+//        StatusBarUtil.setPaddingSmart(this, toolbar);
+//        StatusBarUtil.setPaddingSmart(this, findViewById(R.id.blurView));
 
     }
 
