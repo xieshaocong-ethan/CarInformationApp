@@ -37,7 +37,8 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView1"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="645dp"
+                android:layout_gravity="bottom"
                 android:clipToPadding="false"
                 tools:listitem="@layout/item_detail_car" />
 
