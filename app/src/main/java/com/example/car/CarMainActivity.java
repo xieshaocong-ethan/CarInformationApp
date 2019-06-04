@@ -7,6 +7,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -72,10 +73,11 @@ import java.util.List;
 public class CarMainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     List<Car> cars;
+    ArrayList<Car> carArrayList;
 
 
     private static boolean isFirstEnter = true;
-    private BaseRecyclerAdapter<Model> mAdapter;
+    private BaseRecyclerAdapter<Car> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,13 +131,18 @@ public class CarMainActivity extends AppCompatActivity
             RecyclerView recyclerView = (RecyclerView) view;
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setItemAnimator(new DefaultItemAnimator());
-            recyclerView.setAdapter(mAdapter = new BaseRecyclerAdapter<Model>(loadModels(), R.layout.item_practice_repast) {
+            cars = MyConstant.cars;
+            ArrayList<Car> carArrayList = new ArrayList<>(
+            );
+            for (int iiii= 0;iiii<cars.size();iiii++) { carArrayList.add(cars.get(iiii));
+            }
+            recyclerView.setAdapter(mAdapter = new BaseRecyclerAdapter<Car>(carArrayList,R.layout.item_practice_repast) {
                 @Override
-                protected void onBindViewHolder(SmartViewHolder holder, Model model, int position) {
-                    holder.text(R.id.name, model.getName());
-                    holder.text(R.id.nickname, model.getNickname());
-                    holder.setimage(R.id.image,model.getImage(),10*1024*1024);
-                    holder.setimage(R.id.avatar,model.getAvatar(),10*1024*1024);
+                protected void onBindViewHolder(SmartViewHolder holder, Car car, int position) {
+                    holder.text(R.id.name, car.getName());
+                    holder.text(R.id.nickname, car.getBrand());
+                    holder.setimage(R.id.image,car.getPurl()+".jpg",10*1024*1024);
+                    holder.setimage(R.id.avatar,car.getBrandPurl()+".png",10*1024*1024);
                 }
             }
             );
@@ -160,7 +167,7 @@ public class CarMainActivity extends AppCompatActivity
                                 Toast.makeText(getBaseContext(), "数据全部加载完毕", Toast.LENGTH_SHORT).show();
                                 refreshLayout.finishLoadMoreWithNoMoreData();//设置之后，将不会再触发加载事件
                             } else {
-                                mAdapter.loadMore(loadModels());
+                                //mAdapter.loadMore(loadModels());
                                 refreshLayout.finishLoadMore();
                             }
                         }
@@ -177,9 +184,11 @@ public class CarMainActivity extends AppCompatActivity
             mAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Model modle = mAdapter.get(position);
-                    Toast.makeText(getApplicationContext(),modle.getName(),Toast.LENGTH_LONG).show();
+                    Car car = mAdapter.get(position);
+                    Toast.makeText(getApplicationContext(),car.getName(),Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(CarMainActivity.this,SeriesDetailActivity.class);
+                    intent.putExtra("dicarid", car.getCarid());
+                    intent.putExtra("index",cars.indexOf(mAdapter.get(position)));
                     startActivity(intent);
 
                 }

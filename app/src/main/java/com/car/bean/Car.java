@@ -14,6 +14,16 @@ public class Car {
     private String purl2;
     private String purl3;
     private String purl4;
+
+    public String getBrandPurl() {
+        return brandPurl;
+    }
+
+    public void setBrandPurl(String brandPurl) {
+        this.brandPurl = brandPurl;
+    }
+
+    private String brandPurl;
     public String getCarid() {
         return carid;
     }

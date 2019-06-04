@@ -1,6 +1,10 @@
 package com.example.car;
 
+import android.app.Service;
+import android.content.Intent;
+import android.net.TrafficStats;
 import android.os.Environment;
+import android.os.IBinder;
 import android.util.Log;
 import android.widget.ImageView;
 import com.alibaba.fastjson.JSON;
@@ -16,25 +20,56 @@ import com.car.bean.CarDetail;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static android.net.TrafficStats.getTotalTxBytes;
 
 /**
  * Created by Administrator on 2018/6/6.
  */
 
-public class MyConstant {
+public class MyConstant extends Service {
 
     public static final String PIC_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CAR";
     public static final String url = "http://192.168.43.72:18080/";
     public static final String carurl = "http://192.168.43.72:18080/listCar";
+    public static final String TAG = "LoadData";
+    public static final String trafficTAG = "总流量";
+    public static double tf =0;
 
     public static List<Car> getCars() {
         return cars;
     }
     static List<CarDetail> carDetails = null;
-    static List<Car> cars;
+    static List<Car> cars ;
+    static ArrayList<Car> carArrayList = null;
+
+    @Override
+    public void onCreate() {
+        Log.d(TAG,"onCreate");
+        super.onCreate();
+        gettrafiicmonitor();
+    }
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d(TAG, "onStartCommand");
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(TAG, "onDestroy");
+        super.onDestroy();
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return null;
+    }
 
     public static void setCarImg(String imgPath, int cacheSize, ImageView imageView) {
 
@@ -56,6 +91,7 @@ public class MyConstant {
                         com.alibaba.fastjson.JSONArray jsonArray = JSON.parseArray(jsonObject.toString());
                         cars = JSON.parseArray(jsonArray.toJSONString(), Car.class);
                         Log.i("connection",jsonObject.toString() );
+
                     }
                 },
                 new Response.ErrorListener() {
@@ -73,7 +109,7 @@ public class MyConstant {
         MyApplication.getHttpQueues().add(request);
     }
 
-    private static void getcarDetail(String carid) {
+    public static void getcarDetail(String carid) {
         String url = MyConstant.url+"getCarDitail";
         Map<String,String> map = new HashMap<>();
         map.put("carId",carid);
@@ -83,7 +119,7 @@ public class MyConstant {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray jsonArray) {//jsonObject为请求返回的Json格式数据
-                      //  parseCarDetail(carid);
+                        parseCarDetail(jsonArray);
                     }
                 },
                 new Response.ErrorListener() {
@@ -99,6 +135,45 @@ public class MyConstant {
         //将请求加入全局队列中
         MyApplication.getHttpQueues().add(request);
     }
+
+    public void gettrafiicmonitor(){
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    double total01 = getTotalTxBytes();
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    double total02 = getTotalTxBytes();
+                    double errorTraffic = total02 - total01;
+                    if (errorTraffic < 512) {
+                        errorTraffic = 1;
+                    }
+                    tf += errorTraffic / 1111500;
+
+                }
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    Log.d(trafficTAG,String.valueOf(tf));
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+    }
+
     public static List<CarDetail> parseCarDetail(JSONArray jsonArray){
         List<CarDetail> carDetails = null;
         carDetails = JSON.parseArray(jsonArray.toString(),CarDetail.class);

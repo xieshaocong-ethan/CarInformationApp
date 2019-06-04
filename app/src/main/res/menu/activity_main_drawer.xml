@@ -18,8 +18,8 @@
             android:title="论坛" />
         <item
             android:id="@+id/imgTest"
-            android:icon="@drawable/send2"
-            android:title="测试" />
+            android:icon="@drawable/explore1"
+            android:title="新闻" />
     </group>
 
     <item android:title="Communicate">

@@ -1,5 +1,6 @@
 package com.example.car;
 
+import android.content.Intent;
 import android.support.annotation.StringRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,9 +11,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import com.adapter.BaseRecyclerAdapter;
 import com.adapter.SmartViewHolder;
+import com.car.bean.Car;
+import com.car.bean.CarDetail;
+import com.forum.model.entity.Model;
 import com.forum.model.entity.Series;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
@@ -30,11 +35,15 @@ public class SeriesDetailActivity extends AppCompatActivity implements AdapterVi
     private static boolean isFirstEnter = true;
     private BaseRecyclerAdapter<Series> mAdapter;
     List<Series> carseries;
+    List<CarDetail> carDetails = null;
+    Intent intent = getIntent();
+    String dicarid = intent.getStringExtra("dicarid");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_series_detail);
-
+        MyConstant.getcarDetail("dicarid");
+        carDetails = MyConstant.carDetails;
         mToolbar = findViewById(R.id.toolbar);
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,10 +74,22 @@ public class SeriesDetailActivity extends AppCompatActivity implements AdapterVi
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        Series series = mAdapter.get(position);
+        Toast.makeText(getApplicationContext(),series.getSeriesname(),Toast.LENGTH_LONG).show();
     }
 
     private Collection<Series> loadModels() {
+        /*for (CarDetail carde : carDetails) {
+            carseries.add(new Series() {
+                {
+                    this.setBrand((MyConstant.cars.get());
+                    this.setCname(carde.getCarid());
+                    this.setSeriesid(carde.getCarnum());
+                    this.setSeriesname(carde.);
+                    this.setSeriesimage();
+                }
+            });
+        }*/
         ArrayList<Series> arrayList = new ArrayList<>();
         // carseries = MyConstant.getCars();
         try {

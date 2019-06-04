@@ -77,9 +77,9 @@
                         android:layout_height="100dp"
                         android:layout_marginLeft="@dimen/dimenPaddingCommon"
                         android:layout_marginRight="@dimen/dimenPaddingCommon"
-                        app:civ_border_width="3dp"
+                        android:src="@mipmap/refresh_loading01"
                         app:civ_border_color="@android:color/white"
-                        android:src="@mipmap/image_avatar_5"/>
+                        app:civ_border_width="3dp" />
 
                     <TextView  style="@style/AppTheme.Label.Title.Large"
                         android:id="@+id/title"

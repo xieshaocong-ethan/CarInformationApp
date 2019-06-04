@@ -1,19 +1,89 @@
-package com.car.bean;
-
-import com.forum.model.entity.Ac_refrigerator;
-import com.forum.model.entity.Body;
-import com.forum.model.entity.Chassis_steering;
-import com.forum.model.entity.Control_configuration;
-import com.forum.model.entity.Engine;
-import com.forum.model.entity.External_configuration;
-import com.forum.model.entity.Glass_rearviewmirror;
-import com.forum.model.entity.High_tech_configuration;
-import com.forum.model.entity.Internal_configuration;
-import com.forum.model.entity.Light_configuration;
-import com.forum.model.entity.Media_configuration;
+package com.forum.model.entity;
 
 public class CarDetail {
     String carid;
+
+    @Override
+    public String toString() {
+        return "CarDetail{" +
+                "carid='" + carid + '\'' +
+                ", carnum='" + carnum + '\'' +
+                ", internal_configuration=" + internal_configuration +
+                ", glass_rearviewmirror=" + glass_rearviewmirror +
+                ", external_configuration=" + external_configuration +
+                ", control_configuration=" + control_configuration +
+                ", light_configuration=" + light_configuration +
+                ", high_tech_configuration=" + high_tech_configuration +
+                ", body=" + body +
+                ", ac_refrigerator=" + ac_refrigerator +
+                ", engine=" + engine +
+                ", chassis_steering=" + chassis_steering +
+                ", media_configuration=" + media_configuration +
+                ", basic_parameter=" + basic_parameter +
+                ", brand=" + brand +
+                ", safety_equipment=" + safety_equipment +
+                ", seat_configuration=" + seat_configuration +
+                ", transmission=" + transmission +
+                ", wheel_brake=" + wheel_brake +
+                '}';
+    }
+
+    public String getCarid() {
+        return carid;
+    }
+
+    public Basic_parameter getBasic_parameter() {
+        return basic_parameter;
+    }
+
+    public void setBasic_parameter(Basic_parameter basic_parameter) {
+        this.basic_parameter = basic_parameter;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public Safety_equipment getSafety_equipment() {
+        return safety_equipment;
+    }
+
+    public void setSafety_equipment(Safety_equipment safety_equipment) {
+        this.safety_equipment = safety_equipment;
+    }
+
+    public Seat_configuration getSeat_configuration() {
+        return seat_configuration;
+    }
+
+    public void setSeat_configuration(Seat_configuration seat_configuration) {
+        this.seat_configuration = seat_configuration;
+    }
+
+    public Transmission getTransmission() {
+        return transmission;
+    }
+
+    public void setTransmission(Transmission transmission) {
+        this.transmission = transmission;
+    }
+
+    public Wheel_brake getWheel_brake() {
+        return wheel_brake;
+    }
+
+    public void setWheel_brake(Wheel_brake wheel_brake) {
+        this.wheel_brake = wheel_brake;
+    }
+
+    public void setCarid(String carid) {
+        this.carid = carid;
+    }
+
     String carnum;
     Internal_configuration internal_configuration;
     Glass_rearviewmirror glass_rearviewmirror;
@@ -27,16 +97,19 @@ public class CarDetail {
     Chassis_steering chassis_steering;
     Media_configuration media_configuration;
 
+    Basic_parameter  basic_parameter ;
+    Brand  brand ;
+
+    Safety_equipment  safety_equipment ;
+
+    Seat_configuration  seat_configuration ;
+
+    Transmission  transmission ;
+
+    Wheel_brake  wheel_brake;
+
     public String getCarnum() {
         return carnum;
-    }
-
-    public String getCarid() {
-        return carid;
-    }
-
-    public void setCarid(String carid) {
-        this.carid = carid;
     }
 
     public void setCarnum(String carnum) {
@@ -129,24 +202,6 @@ public class CarDetail {
 
     public void setMedia_configuration(Media_configuration media_configuration) {
         this.media_configuration = media_configuration;
-    }
-
-    @Override
-    public String toString() {
-        return "CarDetail{" +
-                "carnum='" + carnum + '\'' +
-                ", internal_configuration=" + internal_configuration +
-                ", glass_rearviewmirror=" + glass_rearviewmirror +
-                ", external_configuration=" + external_configuration +
-                ", control_configuration=" + control_configuration +
-                ", light_configuration=" + light_configuration +
-                ", high_tech_configuration=" + high_tech_configuration +
-                ", body=" + body +
-                ", ac_refrigerator=" + ac_refrigerator +
-                ", engine=" + engine +
-                ", chassis_steering=" + chassis_steering +
-                ", media_configuration=" + media_configuration +
-                '}';
     }
 
 }
