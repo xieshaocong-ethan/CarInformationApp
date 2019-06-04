@@ -3,8 +3,6 @@ package com.example.car;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.alibaba.fastjson.JSON;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -12,12 +10,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.car.bean.Car;
 import com.car.bean.CarDetail;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
@@ -31,13 +27,13 @@ import java.util.Map;
 public class MyConstant {
 
     public static final String PIC_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CAR";
-    public static final String url = "http://192.168.0.105:18080/";
-    public static final String carurl = "http://192.168.0.105:18080/listCar";
+    public static final String url = "http://192.168.43.72:18080/";
+    public static final String carurl = "http://192.168.43.72:18080/listCar";
 
     public static List<Car> getCars() {
         return cars;
     }
-    public static List<CarDetail> carDetails = null;
+    static List<CarDetail> carDetails = null;
     static List<Car> cars;
 
     public static void setCarImg(String imgPath, int cacheSize, ImageView imageView) {
@@ -77,17 +73,17 @@ public class MyConstant {
         MyApplication.getHttpQueues().add(request);
     }
 
-    public static void getcarDetail(String carid) {
+    private static void getcarDetail(String carid) {
         String url = MyConstant.url+"getCarDitail";
         Map<String,String> map = new HashMap<>();
         map.put("carId",carid);
         //将map转化为JSONObject对象
         JSONObject jsonObject = new JSONObject(map);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, jsonObject,
-                new Response.Listener<JSONObject>() {
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.POST, url, jsonObject,
+                new Response.Listener<JSONArray>() {
                     @Override
-                    public void onResponse(JSONObject jsonObject) {//jsonObject为请求返回的Json格式数据
-                    parseCarDetail(jsonObject);
+                    public void onResponse(JSONArray jsonArray) {//jsonObject为请求返回的Json格式数据
+                      //  parseCarDetail(carid);
                     }
                 },
                 new Response.ErrorListener() {
@@ -103,15 +99,9 @@ public class MyConstant {
         //将请求加入全局队列中
         MyApplication.getHttpQueues().add(request);
     }
-    public static List<CarDetail> parseCarDetail(JSONObject jsonObject){
-        com.alibaba.fastjson.JSONObject json = JSON.parseObject(jsonObject.toString());
+    public static List<CarDetail> parseCarDetail(JSONArray jsonArray){
         List<CarDetail> carDetails = null;
-        com.alibaba.fastjson.JSONObject jsonPara1 = json.getJSONObject("params1");
-        CarDetail carDetail1 = JSON.toJavaObject(jsonPara1,CarDetail.class);
-        com.alibaba.fastjson.JSONObject jsonPara2 = (com.alibaba.fastjson.JSONObject) json.getJSONObject("params1");
-        CarDetail carDetail2 = JSON.toJavaObject(jsonPara1,CarDetail.class);
-        carDetails.add(carDetail1);
-        carDetails.add(carDetail2);
+        carDetails = JSON.parseArray(jsonArray.toString(),CarDetail.class);
         return carDetails;
     }
 }

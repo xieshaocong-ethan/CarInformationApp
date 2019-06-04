@@ -1,38 +1,17 @@
 package com.example.car;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.TextView;
 
 import com.adapter.BaseRecyclerAdapter;
-import com.adapter.SmartViewHolder;
-import com.car.bean.Car;
-import com.car.bean.CarDetail;
-import com.car.bean.User;
 import com.forum.model.entity.Detail;
-import com.forum.model.entity.Model;
-import com.forum.model.entity.Series;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
-import org.litepal.crud.DataSupport;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CarDetailActivity extends AppCompatActivity {
 
