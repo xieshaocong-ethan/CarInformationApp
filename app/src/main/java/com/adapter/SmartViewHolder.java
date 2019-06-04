@@ -99,6 +99,13 @@ public class SmartViewHolder extends RecyclerView.ViewHolder implements View.OnC
         }
         return this;
     }
+    public SmartViewHolder setimage(int id,String imgPath, int cacheSize,boolean islarge) {
+        View view = findViewById(id);
+        if (view instanceof ImageView) {
+            MyConstant.setCarImg(imgPath,cacheSize,(ImageView)view,islarge);
+        }
+        return this;
+    }
 
     public SmartViewHolder gone(int id) {
         View view = findViewById(id);

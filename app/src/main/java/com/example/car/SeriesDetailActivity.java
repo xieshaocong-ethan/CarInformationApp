@@ -103,8 +103,8 @@ public class SeriesDetailActivity extends AppCompatActivity implements AdapterVi
                 arrayList.add(new Series(){
                     {   this.setBrand(cars.get(cindex).getBrand());
                         this.setCname(cars.get(cindex).getName());
-                        this.setSeriesid(carse.getCarnum());
-                        this.setSeriesname(carse.getBasic_parameter().getModelname());
+                        this.setSeriesid(carse.getcarnum());
+                        this.setSeriesname(carse.getbasic_parameter().getModelname());
                         this.setSeriesimage(cars.get(cindex).getPurl());
                     }
 

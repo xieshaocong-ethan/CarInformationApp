@@ -9,6 +9,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import com.forum.model.entity.Parameter;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,25 +79,25 @@ public class CarDetailActivity extends AppCompatActivity {
                         this.setPvalue(ar.get(ii).getPvalue());
                     }});
                 }
-
                 for (Parameter pa : ar) {
                     ArrayList<Parameter> inar;
-                    String geta ="get";
-                    Method getsomeclass = carDetails.get(sindex).getClass().getMethod(geta+pa.getPname(),null);
-                    inar = getparameter(getsomeclass);
+                    Method getsomeclass = CarDetail.class.getMethod("get"+pa.getPname());
+                    Log.d("method",getsomeclass.getName());
+                    inar = getparameter(getsomeclass.invoke(carDetails.get(sindex),null));
                     for (inai = 0; inai < inar.size(); inai++) {
                         carArrayList.add(new Parameter() {{
-                            inar.get(inai).getPvalue();
-                            inar.get(inai).getPname();
+                            this.setPvalue(inar.get(inai).getPvalue());
+                            this.setPname(inar.get(inai).getPname());
                         }});
                     }
 
                 }
             }catch (Exception e){e.printStackTrace();}
+
             recyclerView.setAdapter(itemAdapter = new BaseRecyclerAdapter<String>(picar,R.layout.item_detail_car) {
                 @Override
                 protected void onBindViewHolder(SmartViewHolder holder, String model, int position) {
-                    holder.setimage(R.id.imageView2,model+"jpg",10*1024*1024);
+                    holder.setimage(R.id.imageView2,model+".jpg",10*1024*1024,true);
                 }
             });
 
@@ -105,7 +107,7 @@ public class CarDetailActivity extends AppCompatActivity {
             TextView title = findViewById(R.id.title1);
             title.setText(MyConstant.cars.get(cindex).getBrand());
             TextView as = findViewById(R.id.assistant);
-            as.setText(MyConstant.carDetails.get(cindex).getBasic_parameter().getModelname());
+            as.setText(MyConstant.carDetails.get(cindex).getbasic_parameter().getModelname());
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

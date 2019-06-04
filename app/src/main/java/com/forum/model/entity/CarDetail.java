@@ -32,7 +32,7 @@ public class CarDetail {
         return carid;
     }
 
-    public Basic_parameter getBasic_parameter() {
+    public Basic_parameter getbasic_parameter() {
         return basic_parameter;
     }
 
@@ -40,7 +40,7 @@ public class CarDetail {
         this.basic_parameter = basic_parameter;
     }
 
-    public Brand getBrand() {
+    public Brand getbrand() {
         return brand;
     }
 
@@ -48,15 +48,15 @@ public class CarDetail {
         this.brand = brand;
     }
 
-    public Safety_equipment getSafety_equipment() {
+    public Safety_equipment getsafety_equipment() {
         return safety_equipment;
     }
 
-    public void setSafety_equipment(Safety_equipment safety_equipment) {
+    public void setsafety_equipment(Safety_equipment safety_equipment) {
         this.safety_equipment = safety_equipment;
     }
 
-    public Seat_configuration getSeat_configuration() {
+    public Seat_configuration getseat_configuration() {
         return seat_configuration;
     }
 
@@ -64,7 +64,7 @@ public class CarDetail {
         this.seat_configuration = seat_configuration;
     }
 
-    public Transmission getTransmission() {
+    public Transmission gettransmission() {
         return transmission;
     }
 
@@ -72,7 +72,7 @@ public class CarDetail {
         this.transmission = transmission;
     }
 
-    public Wheel_brake getWheel_brake() {
+    public Wheel_brake getwheel_brake() {
         return wheel_brake;
     }
 
@@ -108,7 +108,7 @@ public class CarDetail {
 
     Wheel_brake  wheel_brake;
 
-    public String getCarnum() {
+    public String getcarnum() {
         return carnum;
     }
 
@@ -116,7 +116,7 @@ public class CarDetail {
         this.carnum = carnum;
     }
 
-    public Internal_configuration getInternal_configuration() {
+    public Internal_configuration getinternal_configuration() {
         return internal_configuration;
     }
 
@@ -124,7 +124,7 @@ public class CarDetail {
         this.internal_configuration = internal_configuration;
     }
 
-    public Glass_rearviewmirror getGlass_rearviewmirror() {
+    public Glass_rearviewmirror getglass_rearviewmirror() {
         return glass_rearviewmirror;
     }
 
@@ -132,7 +132,7 @@ public class CarDetail {
         this.glass_rearviewmirror = glass_rearviewmirror;
     }
 
-    public External_configuration getExternal_configuration() {
+    public External_configuration getexternal_configuration() {
         return external_configuration;
     }
 
@@ -140,7 +140,7 @@ public class CarDetail {
         this.external_configuration = external_configuration;
     }
 
-    public Control_configuration getControl_configuration() {
+    public Control_configuration getcontrol_configuration() {
         return control_configuration;
     }
 
@@ -148,7 +148,7 @@ public class CarDetail {
         this.control_configuration = control_configuration;
     }
 
-    public Light_configuration getLight_configuration() {
+    public Light_configuration getlight_configuration() {
         return light_configuration;
     }
 
@@ -156,7 +156,7 @@ public class CarDetail {
         this.light_configuration = light_configuration;
     }
 
-    public High_tech_configuration getHigh_tech_configuration() {
+    public High_tech_configuration gethigh_tech_configuration() {
         return high_tech_configuration;
     }
 
@@ -164,7 +164,7 @@ public class CarDetail {
         this.high_tech_configuration = high_tech_configuration;
     }
 
-    public Body getBody() {
+    public Body getbody() {
         return body;
     }
 
@@ -172,7 +172,7 @@ public class CarDetail {
         this.body = body;
     }
 
-    public Ac_refrigerator getAc_refrigerator() {
+    public Ac_refrigerator getac_refrigerator() {
         return ac_refrigerator;
     }
 
@@ -180,7 +180,7 @@ public class CarDetail {
         this.ac_refrigerator = ac_refrigerator;
     }
 
-    public Engine getEngine() {
+    public Engine getengine() {
         return engine;
     }
 
@@ -188,7 +188,7 @@ public class CarDetail {
         this.engine = engine;
     }
 
-    public Chassis_steering getChassis_steering() {
+    public Chassis_steering getchassis_steering() {
         return chassis_steering;
     }
 
@@ -196,7 +196,7 @@ public class CarDetail {
         this.chassis_steering = chassis_steering;
     }
 
-    public Media_configuration getMedia_configuration() {
+    public Media_configuration getmedia_configuration() {
         return media_configuration;
     }
 

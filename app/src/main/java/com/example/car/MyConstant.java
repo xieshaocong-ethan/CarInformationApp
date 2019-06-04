@@ -82,6 +82,16 @@ public class MyConstant extends Service {
             imageLoader.get(MyConstant.url+imgPath, listener);
         }
     }
+    public static void setCarImg(String imgPath, int cacheSize, ImageView imageView, boolean islarge) {
+
+        ImageLoader imageLoader = new ImageLoader(MyApplication.getHttpQueues(),
+                new BitmapLruCache(cacheSize) {});
+        ImageLoader.ImageListener listener = ImageLoader.getImageListener(imageView,
+                R.drawable.image_placeholder, R.drawable.image_error);//加载时图片，默认图片
+        if(imageLoader.isCached(MyConstant.url+imgPath,430,430,imageView.getScaleType()) == false){
+            imageLoader.get(MyConstant.url+imgPath, listener);
+        }
+    }
     public static void setCarImg(String imgPath, int cacheSize, CircleImageView imageView) {
         ImageLoader imageLoader = new ImageLoader(MyApplication.getHttpQueues(),
                 new BitmapLruCache(cacheSize) {
