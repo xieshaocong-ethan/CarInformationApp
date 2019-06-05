@@ -102,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                         String result = json.get("result").toString();
                         if(result.equals("true")){
 
-                            Bitmap img = stringToBitmap("data:image/jpeg;base64,"+json.get("img").toString());
+                            Bitmap img = stringToBitmap(json.get("img").toString());//"data:image/jpeg;base64,"+
                             String imgPath = saveImageToGallery(img,json.getJSONObject("user").get("userid").toString()+"_touxiang");
                             String userid = id.getText().toString();
                             String email = json.getJSONObject("user").get("email").toString();
@@ -191,10 +191,11 @@ public class LoginActivity extends AppCompatActivity {
     public static Bitmap stringToBitmap(String string) {
         Bitmap bitmap = null;
         try {
-            byte[] bitmapArray = Base64.decode(string.split(",")[1], Base64.DEFAULT);
+            byte[] bitmapArray = Base64.decode(string, Base64.DEFAULT);
             bitmap = BitmapFactory.decodeByteArray(bitmapArray, 0, bitmapArray.length);
         } catch (Exception e) {
             e.printStackTrace();
+            Log.e("bitmap", "stringToBitmap: ",e);
         }
         return bitmap;
     }

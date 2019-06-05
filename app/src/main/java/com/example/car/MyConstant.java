@@ -1,10 +1,18 @@
 package com.example.car;
 
+import android.annotation.TargetApi;
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.net.TrafficStats;
+import android.os.Build;
 import android.os.Environment;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import android.widget.ImageView;
 import com.alibaba.fastjson.JSON;
@@ -35,8 +43,8 @@ import static android.net.TrafficStats.getTotalTxBytes;
 public class MyConstant extends Service {
 
     public static final String PIC_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CAR";
-    public static final String url = "http://192.168.0.108:8080/";
-    public static final String carurl = "http://192.168.0.108:8080/listCar";
+    public static final String url = "http://192.168.0.102:8080/";
+    public static final String carurl = "http://192.168.0.102:8080/listCar";
     public static final String TAG = "LoadData";
     public static final String trafficTAG = "总流量";
     public static double tf =0;
@@ -52,18 +60,40 @@ public class MyConstant extends Service {
     public void onCreate() {
         Log.d(TAG,"onCreate");
         super.onCreate();
-        gettrafiicmonitor();
+
+
+
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.d(TAG, "onStartCommand");
+        gettrafiicmonitor();
+
+        if (Build.VERSION.SDK_INT >= 28) {
+            String channelId = "111";
+            String channelName = "Mb";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            createNotificationChannel(channelId, channelName, importance);
+            Notification notification = new Notification.Builder(getApplicationContext())
+                    .setChannelId(channelId)
+                    .setContentTitle("应用使用流量：")
+                    .setContentText(tf+"Mb")
+                    .setSmallIcon(R.mipmap.ic_launcher)
+                    .build();
+
+            Intent notificationIntent = new Intent(getApplicationContext(), LaunchActivity.class);
+            notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+            notification.contentIntent = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, 0);
+            startForeground(111,notification);
+        }
         return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public void onDestroy() {
         Log.d(TAG, "onDestroy");
+        stopForeground(true);
         super.onDestroy();
     }
 
@@ -195,6 +225,18 @@ public class MyConstant extends Service {
             }
         }).start();
     }
+    @TargetApi(28)
+    private void createNotificationChannel(String channelId, String channelName, int importance) {
+        NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
+        channel.setDescription("流量监控");
+        // 该渠道的通知是否使用震动
+        channel.enableVibration(true);
+        channel.setLockscreenVisibility(NotificationCompat.VISIBILITY_PUBLIC);
+        NotificationManager notificationManager = (NotificationManager) getSystemService(
+                NOTIFICATION_SERVICE);
+        notificationManager.createNotificationChannel(channel);
+    }
+
 
     public static List<CarDetail> parseCarDetail(JSONArray jsonArray){
         carDetails = JSON.parseArray(jsonArray.toString(),CarDetail.class);

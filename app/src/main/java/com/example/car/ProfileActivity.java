@@ -26,16 +26,17 @@ public class ProfileActivity extends AppCompatActivity {
 
     public void zhuxiao() {
         DataSupport.deleteAll(User.class);
-        Intent intent = new Intent(this,LoginActivity.class);
-        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
-        if(navigationView.getHeaderCount() > 0) {
-            View headerView = navigationView.getHeaderView(0);
-            TextView user_id = (TextView) headerView.findViewById(R.id.user_id);
-            user_id.setText("请登录");
-            ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
-            imageView.setImageResource(R.mipmap.image_avatar_5);
-            startActivity(intent);
-        }
+        Intent intent = new Intent(this,CarMainActivity.class);
+//        NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
+//        if(navigationView.getHeaderCount() > 0) {
+//            View headerView = navigationView.getHeaderView(0);
+//            TextView user_id = (TextView) headerView.findViewById(R.id.user_id);
+//            user_id.setText("请登录");
+//            ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
+//            imageView.setImageResource(R.mipmap.image_avatar_5);
+//
+//        }
+        startActivity(intent);
     }
 
     @Override

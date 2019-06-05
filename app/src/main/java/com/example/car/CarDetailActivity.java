@@ -63,8 +63,8 @@ public class CarDetailActivity extends AppCompatActivity {
             ArrayList<String> picar = new ArrayList<>();
             try {
 
-                picar.add(MyConstant.cars.get(cindex).getPurl());
                 picar.add(MyConstant.cars.get(cindex).getPurl1());
+                picar.add(MyConstant.cars.get(cindex).getPurl());
                 picar.add(MyConstant.cars.get(cindex).getPurl2());
                 picar.add(MyConstant.cars.get(cindex).getPurl3());
                 picar.add(MyConstant.cars.get(cindex).getPurl4());
@@ -148,7 +148,6 @@ public class CarDetailActivity extends AppCompatActivity {
         Field[] fields=o.getClass().getDeclaredFields();
         String[] fieldNames=new String[fields.length];
         for(int i=0;i<fields.length;i++){
-//            System.out.println(fields[i].getType());
             fieldNames[i]=fields[i].getName();
         }
         return fieldNames;
@@ -172,9 +171,10 @@ public class CarDetailActivity extends AppCompatActivity {
         ArrayList<String> aValue = new ArrayList();
         String[] fieldNames = getFiledName(clas);
 
-
-        for(int j=0 ; j<fieldNames.length ; j++) {     //遍历所有属性
-            String name = fieldNames[j];    //获取属性的名字
+        //遍历所有属性
+        for(int j=0 ; j<fieldNames.length ; j++) {
+            //获取属性的名字
+            String name = fieldNames[j];
             Object value = getFieldValueByName(name,clas);
             aName.add(name);
             aValue.add(String.valueOf(value));

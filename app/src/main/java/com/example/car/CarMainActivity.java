@@ -1,15 +1,21 @@
 package com.example.car;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.FileProvider;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -88,7 +94,9 @@ public class CarMainActivity extends AppCompatActivity
                 finish();
             }
         });
-
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},1);
+        }
         NavigationView navigationView = (NavigationView)findViewById(R.id.nav_view);
         if(navigationView.getHeaderCount() > 0) {
             View headerView = navigationView.getHeaderView(0);
@@ -136,7 +144,7 @@ public class CarMainActivity extends AppCompatActivity
                     carArrayList.add(cars.get(iiii));
                 }
             }catch (Exception e){e.printStackTrace();}
-            recyclerView.setAdapter(mAdapter = new BaseRecyclerAdapter<Car>(carArrayList,R.layout.item_practice_repast) {
+            recyclerView.setAdapter(mAdapter = new BaseRecyclerAdapter<Car>(loadModels(),R.layout.item_practice_repast) {
                 @Override
                 protected void onBindViewHolder(SmartViewHolder holder, Car car, int position) {
                     holder.text(R.id.name, car.getName());
@@ -154,7 +162,8 @@ public class CarMainActivity extends AppCompatActivity
                         @Override
                         public void run() {
                             refreshLayout.finishRefresh();
-                            refreshLayout.resetNoMoreData();//setNoMoreData(false);//恢复上拉状态
+                            //恢复上拉状态
+                            refreshLayout.resetNoMoreData();//setNoMoreData(false);
                         }
                     }, 2000);
                 }
@@ -167,7 +176,7 @@ public class CarMainActivity extends AppCompatActivity
                                 Toast.makeText(getBaseContext(), "数据全部加载完毕", Toast.LENGTH_SHORT).show();
                                 refreshLayout.finishLoadMoreWithNoMoreData();//设置之后，将不会再触发加载事件
                             } else {
-                                //mAdapter.loadMore(loadModels());
+                                mAdapter.loadMore(loadModels());
                                 refreshLayout.finishLoadMore();
                             }
                         }
@@ -189,36 +198,29 @@ public class CarMainActivity extends AppCompatActivity
 
                     Intent intent = new Intent(CarMainActivity.this,SeriesDetailActivity.class);
                     intent.putExtra("dicarid",car.getCarid());
-                    intent.putExtra("index",cars.indexOf(mAdapter.get(position)));
+                    intent.putExtra("index",position);
                     startActivity(intent);
 
                 }
             });
         }
 
-        //状态栏透明和间距处理
-//        StatusBarUtil.darkMode(this);
-//        StatusBarUtil.setPaddingSmart(this, view);
-//        StatusBarUtil.setPaddingSmart(this, toolbar);
-//        StatusBarUtil.setPaddingSmart(this, findViewById(R.id.blurView));
 
     }
 
-    /**
-     * 模拟数据
-     */
-    private Collection<Model> loadModels() {
-        ArrayList<Model> arrayList = new ArrayList<>();
+    private Collection<Car> loadModels() {
+        ArrayList<Car> arrayList = new ArrayList<>();
         cars = MyConstant.getCars();
         try {
             for (Car car : cars) {
 
 
-                arrayList.add(new Model(){
+                arrayList.add(new Car(){
                     {   this.setName(car.getName());
-                        this.setNickname(car.getBrand());;
-                        this.setImage(car.getPurl()+".jpg");
+                        this.setBrand(car.getBrand());
+                        this.setPurl(car.getPurl());
                         this.setCarid(car.getCarid());
+                        this.setBrandPurl(car.getBrandPurl());
                     }
 
                 });
@@ -226,42 +228,9 @@ public class CarMainActivity extends AppCompatActivity
         }catch (Exception e){e.printStackTrace();};
 
         return  arrayList;
-        /*return Arrays.asList(
-                new Model() {{
-                    this.name = "但家香酥鸭";
-                    this.nickname = "爱过那张脸";
-                    this.imageId = R.mipmap.image_practice_repast_1;
-                    this.avatarId = R.mipmap.image_avatar_1;
-                }}, new Model() {{
-                    this.name = "香菇蒸鸟蛋";
-                    this.nickname = "淑女算个鸟";
-                    this.imageId = R.mipmap.image_practice_repast_2;
-                    this.avatarId = R.mipmap.image_avatar_2;
-                }}, new Model() {{
-                    this.name = "花溪牛肉粉";
-                    this.nickname = "性感妩媚";
-                    this.imageId = R.mipmap.image_practice_repast_3;
-                    this.avatarId = R.mipmap.image_avatar_3;
-                }}, new Model() {{
-                    this.name = "破酥包";
-                    this.nickname = "一丝丝纯真";
-                    this.imageId = R.mipmap.image_practice_repast_4;
-                    this.avatarId = R.mipmap.image_avatar_4;
-                }}, new Model() {{
-                    this.name = "盐菜饭";
-                    this.nickname = "等着你回来";
-                    this.imageId = R.mipmap.image_practice_repast_5;
-                    this.avatarId = R.mipmap.image_avatar_5;
-                }}, new Model() {{
-                    this.name = "米豆腐";
-                    this.nickname = "宝宝树人";
-                    this.imageId = R.mipmap.image_practice_repast_6;
-                    this.avatarId = R.mipmap.image_avatar_6;
-                }});*/
     }
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
         if (id == R.id.login) {
@@ -302,9 +271,18 @@ public class CarMainActivity extends AppCompatActivity
                 TextView user_email = (TextView)headerView.findViewById(R.id.user_email);
                 //user_email.setText(users.get(0).getEmail());
                 ImageView imageView = (ImageView)headerView.findViewById(R.id.imageView);
+                String pathname;
+//                File file= new File(users.get(0).getImgPath());
+//                Uri filepath = null;
+//                if (Build.VERSION.SDK_INT < 24) {
+//                    filepath = Uri.fromFile(file);
+//                } else {
+//                    filepath = FileProvider.getUriForFile(CarMainActivity.this,"Ethan",file);}
                 Bitmap b = null;
                 b = BitmapFactory.decodeFile(users.get(0).getImgPath());
                 imageView.setImageBitmap(b);
+
+
             }
         }
     }

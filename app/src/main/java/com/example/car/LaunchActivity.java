@@ -1,6 +1,7 @@
 package com.example.car;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -27,10 +28,12 @@ public class LaunchActivity extends BaseActivity implements Runnable {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launch);
+        Intent startIntent = new Intent(LaunchActivity.this,MyConstant.class);
+        if(Build.VERSION.SDK_INT >= 28){
+            startForegroundService(startIntent);}
+        else{startService(startIntent);}
         MyConstant.getCarList();
         MyConstant.getcarDetail("1");
-        Intent startIntent = new Intent(this, MyConstant.class);
-         startService(startIntent);
         if (!isTaskRoot()) {
             finish();
             return;

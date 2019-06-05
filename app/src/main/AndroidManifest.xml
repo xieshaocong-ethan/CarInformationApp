@@ -3,9 +3,11 @@
     package="com.example.car">
     <!-- 添加网络操作权限 -->
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
 
     <application
         android:name=".MyApplication"
@@ -17,6 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <service android:name=".MyConstant"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="com.example.car.MyConstant" />
+            </intent-filter>
+        </service>
         <activity android:name=".ForumWebActivity"></activity>
         <activity
             android:name=".ImgTestActivity"
