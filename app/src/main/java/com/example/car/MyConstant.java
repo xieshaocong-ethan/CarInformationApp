@@ -29,6 +29,7 @@ import com.scwang.smartrefresh.header.material.CircleImageView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,8 +44,8 @@ import static android.net.TrafficStats.getTotalTxBytes;
 public class MyConstant extends Service {
 
     public static final String PIC_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/CAR";
-    public static final String url = "http://192.168.0.102:8080/";
-    public static final String carurl = "http://192.168.0.102:8080/listCar";
+    public static final String url = "http://192.168.43.72:8080/";
+    public static final String carurl = "http://192.168.43.72:8080/listCar";
     public static final String TAG = "LoadData";
     public static final String trafficTAG = "总流量";
     public static double tf =0;
@@ -75,10 +76,11 @@ public class MyConstant extends Service {
             String channelName = "Mb";
             int importance = NotificationManager.IMPORTANCE_HIGH;
             createNotificationChannel(channelId, channelName, importance);
+            DecimalFormat df = new DecimalFormat("######0.00");
             Notification notification = new Notification.Builder(getApplicationContext())
                     .setChannelId(channelId)
                     .setContentTitle("应用使用流量：")
-                    .setContentText(tf+"Mb")
+                    .setContentText(df.format(tf)+"Mb")
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .build();
 

@@ -54,7 +54,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="130dp"
                     app:realtimeBlurRadius="10dp"
-                    app:realtimeOverlayColor="#aa3bb2ff"/>
+                    app:realtimeOverlayColor="#8AEAF1F5" />
                 <!--((0xFF * fgC * fgA) + (bgC * bgA * (0xFF - fgA))) / (a * 0xFF);-->
                 <!--((0xFF * fgC * 0xaa) + (bgC * 0xff * (0xFF - 0xaa))) / (0xff * 0xFF) = YY -->
                 <!--(0xFF * fgC * 0xaa) = YY * (0xff * 0xFF) - (bgC * 0xff * (0xFF - 0xaa))  -->
@@ -93,7 +93,7 @@
                         android:layout_toEndOf="@+id/avatar"
                         android:layout_toRightOf="@id/avatar"
                         android:text="Frederik Hansen"
-                        android:textColor="@android:color/white" />
+                        android:textColor="#0091EA" />
 
                     <TextView
                         android:id="@+id/assistant"
@@ -106,18 +106,18 @@
                         android:layout_toEndOf="@id/avatar"
                         android:layout_toRightOf="@id/avatar"
                         android:text="Denmark,Nyborg"
-                        android:textColor="@android:color/white" />
+                        android:textColor="#0091EA" />
 
                     <com.flyco.roundview.RoundTextView
                         android:id="@+id/photos"
                         style="@style/AppTheme.Label.Title.Large"
-                        android:layout_width="59dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignBottom="@+id/assistant"
                         android:layout_alignParentEnd="true"
                         android:layout_marginStart="213dp"
-                        android:layout_marginLeft="213dp"
-                        android:layout_marginEnd="4dp"
+                        android:layout_marginLeft="240dp"
+                        android:layout_marginEnd="5dp"
                         android:layout_marginBottom="0dp"
                         android:layout_toEndOf="@id/avatar"
                         android:layout_toRightOf="@id/avatar"

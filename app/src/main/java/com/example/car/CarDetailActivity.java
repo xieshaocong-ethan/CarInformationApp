@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -104,14 +105,36 @@ public class CarDetailActivity extends AppCompatActivity {
             final Toolbar toolbar = findViewById(R.id.toolbar);
             CircleImageView civ = findViewById(R.id.avatar);
             MyConstant.setCarImg(MyConstant.cars.get(cindex).getBrandPurl()+".png",10*1024*1024,civ);
+            civ.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(CarDetailActivity.this,"\uD83D\uDE0F",Toast.LENGTH_SHORT).show();
+
+                }
+            });
             TextView title = findViewById(R.id.title1);
+            title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(CarDetailActivity.this,"\uD83D\uDE28",Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
             title.setText(MyConstant.cars.get(cindex).getBrand());
             TextView as = findViewById(R.id.assistant);
+            as.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(CarDetailActivity.this,"\uD83D\uDE22",Toast.LENGTH_SHORT).show();
+
+                }
+            });
             as.setText(MyConstant.carDetails.get(cindex).getbasic_parameter().getModelname());
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(CarDetailActivity.this,"\uD83D\uDE0F",Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             });
                     itemAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {

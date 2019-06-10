@@ -83,12 +83,12 @@
                     android:layout_height="45dp"
                     app:rv_isRadiusHalfHeight="true"
                     app:rv_backgroundColor="#ffbb11">
+
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_margin="@dimen/dimenPaddingCommon"
-                        android:contentDescription="@string/app_name"
-                        app:srcCompat="@drawable/ic_fly_refresh_folder"/>
+                        android:contentDescription="@string/app_name" />
                 </com.flyco.roundview.RoundFrameLayout>
 
                 <Button
@@ -96,7 +96,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:background="#44ffffff"
+                    android:background="#E3E3E9"
                     android:text="注销" />
             </LinearLayout>
 

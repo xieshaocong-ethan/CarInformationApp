@@ -90,7 +90,7 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/youjian" />
+                android:src="@mipmap/email" />
 
             <EditText
                 android:id="@+id/regist_email"
@@ -118,7 +118,7 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/yanzhnegma" />
+                android:src="@mipmap/yanzheng" />
 
             <EditText
                 android:id="@+id/regist_yanzheng"
@@ -146,7 +146,7 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/yonghu" />
+                android:src="@mipmap/user" />
 
             <EditText
                 android:id="@+id/regist_uname"
@@ -176,7 +176,7 @@
                 android:layout_height="32dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
-                android:src="@drawable/mima" />
+                android:src="@mipmap/pass" />
 
             <EditText
                 android:id="@+id/regist_password"

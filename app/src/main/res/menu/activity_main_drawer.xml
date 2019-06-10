@@ -7,15 +7,15 @@
 
         <item
             android:id="@+id/main"
-            android:icon="@drawable/home1"
+            android:icon="@mipmap/main"
             android:title="主页" />
         <item
             android:id="@+id/luntan"
-            android:icon="@drawable/forum1"
+            android:icon="@mipmap/luntan"
             android:title="论坛" />
         <item
             android:id="@+id/imgTest"
-            android:icon="@drawable/explore1"
+            android:icon="@mipmap/news"
             android:title="新闻" />
         <item
             android:id="@+id/login"
